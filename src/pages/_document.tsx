@@ -30,8 +30,8 @@ class MyDocument extends Document {
             rel="apple-touch-icon"
             sizes="180x180"
             href="/icons/apple-touch-icon.png"
-          />
-          <link rel="shortcut icon" href="/app-icon.png" /> */}
+          /> */}
+          <link rel="shortcut icon" href="https://sznm.dev/app_icons/greet-gaas.svg" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>

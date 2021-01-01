@@ -2,6 +2,7 @@ import { Flex, Heading, Box, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import AccessibleLink from "../AccessibleLink";
+import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
@@ -26,6 +27,7 @@ const Header = () => {
 
       <Box marginLeft="auto">
         <ThemeToggle />
+        <AppMenu />
       </Box>
     </Flex>
   );
