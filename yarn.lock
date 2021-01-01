@@ -2160,6 +2160,16 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@fontsource/abril-fatface@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/abril-fatface/-/abril-fatface-4.1.0.tgz#ec50ebdc6288abe3ca8940dea422acabb493ed49"
+  integrity sha512-r+iFGcvwqOHDzTdTUBfl+KHuWGzOLuL/8C3m9s22RO+bm+NDWOjw+weFMhMiqzVr34w7C0eaf7yVgRTy5fe6nQ==
+
+"@fontsource/inter@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.1.0.tgz#5c5d5411487aca1b7a8caccba5e995b81051a14a"
+  integrity sha512-v1JHGLAejSV0ec6fVR31vrojpM+JUiNVn0xJxL/ngmbyClDEf8qna5NFsu/xef67KT2kQ2YaU+wCuQEQHG55sw==
+
 "@hapi/accept@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.1.tgz#068553e867f0f63225a506ed74e899441af53e10"

@@ -13,6 +13,8 @@
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@fontsource/abril-fatface": "^4.1.0",
+    "@fontsource/inter": "^4.1.0",
     "framer-motion": "^2.9.4",
     "next": "^10.0.2",
     "next-pwa": "^3.1.4",

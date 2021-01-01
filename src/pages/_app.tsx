@@ -1,5 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
+import "@fontsource/inter/latin.css";
+import "@fontsource/abril-fatface/latin.css";
 
 import Layout from "../components/layout";
 

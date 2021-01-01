@@ -7,8 +7,10 @@ const Header = () => {
   return (
     <Flex as="header" width="full" align="center">
       <AccessibleLink href="/">
-        <Heading as="h1">GaaS</Heading>
-        <Text>Greeting as a Service</Text>
+        <Heading as="h1" letterSpacing={2} fontStyle="italic">
+          GaaS
+        </Heading>
+        <Text>Greetings as a Service</Text>
       </AccessibleLink>
 
       <Box marginLeft="auto">
