@@ -10,8 +10,12 @@ export type OccassionsKeyType = keyof typeof Occassions;
 export type OccassionTemplateType = {
   type: OccassionsKeyType;
   title: string;
-  imageSrc: string;
+  imageSrc: Array<string>;
   subTitle?: string;
+  assetSource?: {
+    name: string,
+    url?: string;
+  };
 };
 
 /**

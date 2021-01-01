@@ -1,4 +1,4 @@
-import { Grid, Heading, Text } from "@chakra-ui/react";
+import { Grid, Heading, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -52,15 +52,34 @@ const OccassionWrapper = ({ occassion }: OccassionWrapperProps) => {
     return;
   }
 
+  const randomImageNum = Math.floor(
+    Math.random() * selectedOccassionTemplate.imageSrc.length
+  );
+
   return (
-    <Grid gap={4} marginX={[0, 16, 32]}>
+    <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
       <Heading>{selectedOccassionTemplate.title}</Heading>
 
       <Image
-        src={selectedOccassionTemplate.imageSrc}
+        src={selectedOccassionTemplate.imageSrc[randomImageNum]}
         width={400}
         height={400}
       />
+
+      {selectedOccassionTemplate.assetSource &&
+        (selectedOccassionTemplate.assetSource.url ? (
+          <Link
+            href={selectedOccassionTemplate.assetSource.url}
+            isExternal
+            fontSize="xs"
+          >
+            Illlustration by {selectedOccassionTemplate.assetSource.name}
+          </Link>
+        ) : (
+          <Text fontSize="xs">
+            Illustration by {selectedOccassionTemplate.assetSource.name}
+          </Text>
+        ))}
     </Grid>
   );
 };

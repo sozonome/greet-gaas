@@ -1,5 +1,4 @@
-import { Grid, Link, useColorMode } from "@chakra-ui/react";
-import Image from "next/image";
+import { Grid, Image, Link, useColorMode } from "@chakra-ui/react";
 
 const Badges = () => {
   const { colorMode } = useColorMode();
@@ -18,8 +17,9 @@ const Badges = () => {
         <Image
           src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=279696&theme=${colorMode}`}
           alt="GaaS - Greetings as a Service | Product Hunt"
-          width="250"
-          height="54"
+          // width="250"
+          margin={["auto", "auto", "0 0 0 auto"]}
+          // height="54"
         />
       </Link>
 

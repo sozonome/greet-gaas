@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   FormControl,
-  FormErrorMessage,
   FormHelperText,
   FormLabel,
   Grid,
@@ -178,7 +177,16 @@ const Create = () => {
           <ModalCloseButton />
           <ModalBody textAlign="center">
             <Grid gap={4}>
-              <Image src="/Online friends-pana.svg" />
+              <Box>
+                <Image src="/Online friends-pana.svg" />
+                <Link
+                  fontSize="xs"
+                  isExternal
+                  href="https://storyset.com/"
+                >
+                  Illustration by Freepik Storyset
+                </Link>
+              </Box>
 
               <Text>Here is the greeting page generated:</Text>
 

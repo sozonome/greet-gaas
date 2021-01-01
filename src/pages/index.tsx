@@ -1,13 +1,24 @@
-import { Button, Grid, Heading, Image } from "@chakra-ui/react";
+import {
+  Button,
+  Grid,
+  Heading,
+  Image,
+  Link as ChakraLink,
+  Text,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 const Home = () => {
   return (
-    <Grid gap={12} marginY={[8, 16]} w="full">
-      <Heading letterSpacing={1} textAlign="center" fontWeight="extrabold">
+    <Grid gap={12} marginY={[8, 16]} w="full" textAlign="center">
+      <Heading letterSpacing={1} fontWeight="extrabold">
         Create Greetings for your Folks!
       </Heading>
       <Image marginX={[0, 16, 32]} src="/High five-cuate.svg" />
+      <ChakraLink fontSize="xs" isExternal href="https://storyset.com/">
+        Illustration by Freepik Storyset
+      </ChakraLink>
+
       <Link href="/create">
         <Button size="lg" marginX={[0, 16, 32]}>
           Create One
