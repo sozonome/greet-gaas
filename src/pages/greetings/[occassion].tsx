@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 import GreetingsTemplate, {
@@ -21,6 +22,9 @@ const GreetingPage = () => {
 
   return (
     <Box>
+      <Head>
+        <title>Hello {name} | Greeting as a Service</title>
+      </Head>
       <GreetingsTemplate {...greetingTemplatesProps} />
     </Box>
   );
