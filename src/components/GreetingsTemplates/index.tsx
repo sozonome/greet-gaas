@@ -59,7 +59,15 @@ const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
 
   return (
     <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
-      <Heading>{selectedOccasionTemplate.title}</Heading>
+      <Heading
+        fontFamily={
+          selectedOccasionTemplate.customFont
+            ? selectedOccasionTemplate.customFont
+            : "Abril Fatface"
+        }
+      >
+        {selectedOccasionTemplate.title}
+      </Heading>
 
       <MotionBox
         animate={{ y: 20 }}

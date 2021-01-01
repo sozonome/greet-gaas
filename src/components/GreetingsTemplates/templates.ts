@@ -17,6 +17,19 @@ export const OccasionTemplates: Array<OccasionTemplateType> = [
     assetSource: { name: "Freepik Storyset", url: "https://storyset.com" },
   },
   {
+    type: "chinese-new-year",
+    title: "Happy Chinese New Year!",
+    imageSrc: [
+      "/chinese-new-year/People celebrating Chinese New Year-amico.svg",
+      "/chinese-new-year/People celebrating Chinese New Year-bro.svg",
+      "/chinese-new-year/People celebrating Chinese New Year-cuate.svg",
+      "/chinese-new-year/People celebrating Chinese New Year-pana.svg",
+      "/chinese-new-year/People celebrating Chinese New Year-rafiki.svg",
+    ],
+    assetSource: { name: "Freepik Storyset", url: "https://storyset.com" },
+    customFont: "Caveat"
+  },
+  {
     type: "christmas",
     title: "Merry Christmas!",
     imageSrc: [
