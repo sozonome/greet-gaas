@@ -81,7 +81,9 @@ const AppMenu = () => {
 
         <DrawerContent>
           <DrawerHeader>
-            <Heading size="xs" fontFamily="Inter">More from sznm.dev</Heading>
+            <Heading size="xs" fontFamily="Inter">
+              More from sznm.dev
+            </Heading>
           </DrawerHeader>
 
           <DrawerBody>
@@ -99,7 +101,9 @@ const AppMenu = () => {
                 >
                   <Image src={icon} width={12} />
                   <Box marginLeft={4}>
-                    <Heading size="sm" fontFamily="Inter">{name}</Heading>
+                    <Heading size="sm" fontFamily="Inter">
+                      {name}
+                    </Heading>
                     {description && <Text fontSize="xs">{description}</Text>}
                   </Box>
                 </Flex>
