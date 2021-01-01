@@ -24,13 +24,13 @@ import {
 import { FormikErrors, useFormik } from "formik";
 
 import {
-  occassions,
-  occassionsText,
+  occasions,
+  occasionsText,
 } from "../components/GreetingsTemplates/types";
 
 type CreateFormType = {
   name: string;
-  occassion: string;
+  occasion: string;
   customMessage?: string;
 };
 
@@ -39,7 +39,7 @@ const Create = () => {
   const toast = useToast();
 
   const {
-    values: { name, occassion, customMessage },
+    values: { name, occasion, customMessage },
     errors,
     dirty,
     handleChange,
@@ -47,7 +47,7 @@ const Create = () => {
   } = useFormik<CreateFormType>({
     initialValues: {
       name: "",
-      occassion: "",
+      occasion: "",
       customMessage: "",
     },
     validate: (formValues: CreateFormType) => {
@@ -61,8 +61,8 @@ const Create = () => {
       if (formValues.customMessage.indexOf("script") > -1) {
         errors.customMessage = "invalid characters";
       }
-      if (formValues.occassion === "") {
-        errors.occassion = "Occassion must be picked";
+      if (formValues.occasion === "") {
+        errors.occasion = "Occasion must be picked";
       }
 
       return errors;
@@ -72,7 +72,7 @@ const Create = () => {
     },
   });
 
-  const greetingRoute = `/greetings/${occassion}?name=${escape(name)}${
+  const greetingRoute = `/greetings/${occasion}?name=${escape(name)}${
     customMessage ? `&message=${escape(customMessage)}` : ""
   }`;
 
@@ -101,30 +101,30 @@ const Create = () => {
 
       <FormControl isRequired>
         <Select
-          placeholder="Select Ocassion"
-          name="occassion"
+          placeholder="what's the occasion?"
+          name="occasion"
           onChange={handleChange}
           size="lg"
-          value={occassion}
+          value={occasion}
           textTransform="capitalize"
           errorBorderColor="crimson"
-          isInvalid={errors?.occassion ? true : false}
+          isInvalid={errors?.occasion ? true : false}
         >
-          {occassionsText.map((occassion: string, index: number) => {
+          {occasionsText.map((occasion: string, index: number) => {
             return (
               <Text
                 style={{ textTransform: "capitalize" }}
                 key={index}
                 as="option"
-                value={occassions[index]}
+                value={occasions[index]}
               >
-                {occassion}
+                {occasion}
               </Text>
             );
           })}
         </Select>
-        {errors?.occassion && (
-          <FormHelperText color="crimson">{errors.occassion}</FormHelperText>
+        {errors?.occasion && (
+          <FormHelperText color="crimson">{errors.occasion}</FormHelperText>
         )}
       </FormControl>
 

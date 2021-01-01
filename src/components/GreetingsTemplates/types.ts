@@ -1,14 +1,14 @@
-export enum Occassions {
+export enum Occasions {
   "new-year",
   // "chinese-new-year",
   // "ramadhan",
   "christmas",
 }
 
-export type OccassionsKeyType = keyof typeof Occassions;
+export type OccasionsKeyType = keyof typeof Occasions;
 
-export type OccassionTemplateType = {
-  type: OccassionsKeyType;
+export type OccasionTemplateType = {
+  type: OccasionsKeyType;
   title: string;
   imageSrc: Array<string>;
   subTitle?: string;
@@ -16,18 +16,19 @@ export type OccassionTemplateType = {
     name: string;
     url?: string;
   };
+  customFont?: string;
 };
 
 /**
- * occassions type mapped
+ * occasions type mapped
  */
-export const occassions: Array<OccassionsKeyType> = Object.keys(Occassions)
+export const occasions: Array<OccasionsKeyType> = Object.keys(Occasions)
   .filter((key: string) => Number.isNaN(Number(key)))
-  .map((rawOccassion: OccassionsKeyType) => rawOccassion);
+  .map((rawOccasion: OccasionsKeyType) => rawOccasion);
 
 /**
- * transformed occassions key into text
+ * transformed occasions key into text
  */
-export const occassionsText: Array<string> = occassions.map(
-  (occassion: OccassionsKeyType) => occassion.replace(/-/g, " ")
+export const occasionsText: Array<string> = occasions.map(
+  (occasion: OccasionsKeyType) => occasion.replace(/-/g, " ")
 );

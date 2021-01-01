@@ -3,22 +3,22 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import MotionBox from "../MotionBox";
 
-import { OccassionTemplates } from "./templates";
+import { OccasionTemplates } from "./templates";
 
-import { OccassionsKeyType, OccassionTemplateType } from "./types";
+import { OccasionsKeyType, OccasionTemplateType } from "./types";
 
 export type GreetingsTemplateProps = {
-  occassion?: OccassionsKeyType;
+  occasion?: OccasionsKeyType;
   name?: string;
   message?: string;
 };
 
 const GreetingsTemplate = ({
-  occassion,
+  occasion,
   name,
   message,
 }: GreetingsTemplateProps) => {
-  if (!occassion) {
+  if (!occasion) {
     return null;
   }
 
@@ -32,58 +32,58 @@ const GreetingsTemplate = ({
         ,
       </Text>
 
-      <OccassionWrapper occassion={occassion} />
+      <OccasionWrapper occasion={occasion} />
 
       {message && <Text fontSize="sm">{message}</Text>}
     </Grid>
   );
 };
 
-type OccassionWrapperProps = Pick<GreetingsTemplateProps, "occassion">;
+type OccasionWrapperProps = Pick<GreetingsTemplateProps, "occasion">;
 
-const OccassionWrapper = ({ occassion }: OccassionWrapperProps) => {
-  const selectedOccassionTemplate: OccassionTemplateType = OccassionTemplates.find(
-    ({ type }) => type === occassion
+const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
+  const selectedOccasionTemplate: OccasionTemplateType = OccasionTemplates.find(
+    ({ type }) => type === occasion
   );
 
   const router = useRouter();
 
-  if (!selectedOccassionTemplate) {
+  if (!selectedOccasionTemplate) {
     router.push("/404");
     return;
   }
 
   const randomImageNum = Math.floor(
-    Math.random() * selectedOccassionTemplate.imageSrc.length
+    Math.random() * selectedOccasionTemplate.imageSrc.length
   );
 
   return (
     <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
-      <Heading>{selectedOccassionTemplate.title}</Heading>
+      <Heading>{selectedOccasionTemplate.title}</Heading>
 
       <MotionBox
         animate={{ y: 20 }}
         transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
       >
         <Image
-          src={selectedOccassionTemplate.imageSrc[randomImageNum]}
+          src={selectedOccasionTemplate.imageSrc[randomImageNum]}
           width={400}
           height={400}
         />
       </MotionBox>
 
-      {selectedOccassionTemplate.assetSource &&
-        (selectedOccassionTemplate.assetSource.url ? (
+      {selectedOccasionTemplate.assetSource &&
+        (selectedOccasionTemplate.assetSource.url ? (
           <Link
-            href={selectedOccassionTemplate.assetSource.url}
+            href={selectedOccasionTemplate.assetSource.url}
             isExternal
             fontSize="xs"
           >
-            Illlustration by {selectedOccassionTemplate.assetSource.name}
+            Illlustration by {selectedOccasionTemplate.assetSource.name}
           </Link>
         ) : (
           <Text fontSize="xs">
-            Illustration by {selectedOccassionTemplate.assetSource.name}
+            Illustration by {selectedOccasionTemplate.assetSource.name}
           </Text>
         ))}
     </Grid>
