@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -6,15 +6,21 @@ import Meta from "./Meta";
 
 const Layout = ({ children }) => {
   return (
-    <Box margin="0 auto" maxWidth={800} transition="0.5s ease-out">
+    <Box transition="0.5s ease-out">
       <Meta />
-      <Box margin="8">
+      <Grid
+        alignItems="center"
+        padding="8"
+        marginX="auto"
+        maxWidth={800}
+        minHeight="100vh"
+      >
         <Header />
         <Box as="main" marginY={22}>
           {children}
         </Box>
         <Footer />
-      </Box>
+      </Grid>
     </Box>
   );
 };

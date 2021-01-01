@@ -1,16 +1,27 @@
 import { Flex, Heading, Box, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 import AccessibleLink from "../AccessibleLink";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
+  const router = useRouter();
+  const { pathname } = router;
+
+  const isGreetingPage = router.pathname.indexOf("greetings") > -1;
+
   return (
-    <Flex as="header" width="full" align="center">
+    <Flex alignSelf="start" as="header" width="full" align="center">
       <AccessibleLink href="/">
-        <Heading as="h1" letterSpacing={2} fontStyle="italic">
+        <Heading
+          as="h1"
+          letterSpacing={2}
+          fontSize={isGreetingPage ? "lg" : "3xl"}
+          fontStyle="italic"
+        >
           GaaS
         </Heading>
-        <Text>Greetings as a Service</Text>
+        <Text fontSize={isGreetingPage && "xs"}>Greetings as a Service</Text>
       </AccessibleLink>
 
       <Box marginLeft="auto">
