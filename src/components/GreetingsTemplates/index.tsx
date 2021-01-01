@@ -6,18 +6,23 @@ import { OccassionTemplates } from "./templates";
 
 import { OccassionsKeyType, OccassionTemplateType } from "./types";
 
-type GreetingsTemplateProps = {
+export type GreetingsTemplateProps = {
   occassion?: OccassionsKeyType;
   name?: string;
+  message?: string;
 };
 
-const GreetingsTemplate = ({ occassion, name }: GreetingsTemplateProps) => {
+const GreetingsTemplate = ({
+  occassion,
+  name,
+  message,
+}: GreetingsTemplateProps) => {
   if (!occassion) {
     return null;
   }
 
   return (
-    <Grid textAlign="center">
+    <Grid textAlign="center" gap={2}>
       <Text fontSize="lg">
         Hello{" "}
         <Text as="span" textTransform="capitalize">
@@ -27,6 +32,8 @@ const GreetingsTemplate = ({ occassion, name }: GreetingsTemplateProps) => {
       </Text>
 
       <OccassionWrapper occassion={occassion} />
+
+      {message && <Text fontSize="sm">{message}</Text>}
     </Grid>
   );
 };

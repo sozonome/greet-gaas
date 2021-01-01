@@ -3,6 +3,7 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
+  FormHelperText,
   FormLabel,
   Grid,
   Heading,
@@ -31,6 +32,7 @@ import {
 type CreateFormType = {
   name: string;
   occassion: string;
+  customMessage?: string;
 };
 
 const Create = () => {
@@ -38,7 +40,7 @@ const Create = () => {
   const toast = useToast();
 
   const {
-    values: { name, occassion },
+    values: { name, occassion, customMessage },
     errors,
     dirty,
     handleChange,
@@ -47,11 +49,18 @@ const Create = () => {
     initialValues: {
       name: "",
       occassion: "",
+      customMessage: "",
     },
     validate: (formValues: CreateFormType) => {
       const errors: FormikErrors<CreateFormType> = {};
       if (formValues.name === "") {
         errors.name = "Name must be filled";
+      }
+      if (formValues.name.indexOf("script") > -1) {
+        errors.name = "invalid characters";
+      }
+      if (formValues.customMessage.indexOf("script") > -1) {
+        errors.customMessage = "invalid characters";
       }
       if (formValues.occassion === "") {
         errors.occassion = "Occassion must be picked";
@@ -64,10 +73,14 @@ const Create = () => {
     },
   });
 
+  const greetingRoute = `/greetings/${occassion}?name=${escape(name)}${
+    customMessage ? `&message=${escape(customMessage)}` : ""
+  }`;
+
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(
-        `${document.location.protocol}//${document.location.host}/greetings/${occassion}?name=${name}`
+        `${document.location.protocol}//${document.location.host}${greetingRoute}`
       )
       .then(() => {
         toast({
@@ -80,46 +93,74 @@ const Create = () => {
   };
 
   const handleRoutePreview = () => {
-    window.open(`/greetings/${occassion}?name=${name}`, "_blank");
+    window.open(greetingRoute, "_blank");
   };
 
   return (
     <Grid gap={8}>
       <Heading letterSpacing={1}>Create a Greeting</Heading>
 
-      <Select
-        placeholder="Select Ocassion"
-        name="occassion"
-        onChange={handleChange}
-        size="lg"
-        value={occassion}
-        textTransform="capitalize"
-      >
-        {occassionsText.map((occassion: string, index: number) => {
-          return (
-            <Text
-              style={{ textTransform: "capitalize" }}
-              key={index}
-              as="option"
-              value={occassions[index]}
-            >
-              {occassion}
-            </Text>
-          );
-        })}
-      </Select>
+      <FormControl isRequired>
+        <Select
+          placeholder="Select Ocassion"
+          name="occassion"
+          onChange={handleChange}
+          size="lg"
+          value={occassion}
+          textTransform="capitalize"
+          errorBorderColor="crimson"
+          isInvalid={errors?.occassion ? true : false}
+        >
+          {occassionsText.map((occassion: string, index: number) => {
+            return (
+              <Text
+                style={{ textTransform: "capitalize" }}
+                key={index}
+                as="option"
+                value={occassions[index]}
+              >
+                {occassion}
+              </Text>
+            );
+          })}
+        </Select>
+        {errors?.occassion && (
+          <FormHelperText color="crimson">{errors.occassion}</FormHelperText>
+        )}
+      </FormControl>
 
-      <FormControl>
+      <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
           type="text"
           placeholder="who do you want to sent it for?"
           value={name}
           name="name"
-          errorBorderColor="vermilion"
+          errorBorderColor="crimson"
+          isInvalid={errors?.name ? true : false}
           onChange={handleChange}
         />
-        {errors?.name && <FormErrorMessage>{errors.name}</FormErrorMessage>}
+        {errors?.name && (
+          <FormHelperText color="crimson">{errors.name}</FormHelperText>
+        )}
+      </FormControl>
+
+      <FormControl>
+        <FormLabel>Custom Message</FormLabel>
+        <Input
+          type="text"
+          placeholder="any custom message?"
+          value={customMessage}
+          name="customMessage"
+          errorBorderColor="crimson"
+          isInvalid={errors?.customMessage ? true : false}
+          onChange={handleChange}
+        />
+        {errors?.customMessage && (
+          <FormHelperText color="crimson">
+            {errors.customMessage}
+          </FormHelperText>
+        )}
       </FormControl>
 
       <Button
