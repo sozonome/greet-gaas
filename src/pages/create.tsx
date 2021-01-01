@@ -179,11 +179,7 @@ const Create = () => {
             <Grid gap={4}>
               <Box>
                 <Image src="/Online friends-pana.svg" />
-                <Link
-                  fontSize="xs"
-                  isExternal
-                  href="https://storyset.com/"
-                >
+                <Link fontSize="xs" isExternal href="https://storyset.com/">
                   Illustration by Freepik Storyset
                 </Link>
               </Box>

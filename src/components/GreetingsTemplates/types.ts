@@ -13,7 +13,7 @@ export type OccassionTemplateType = {
   imageSrc: Array<string>;
   subTitle?: string;
   assetSource?: {
-    name: string,
+    name: string;
     url?: string;
   };
 };
