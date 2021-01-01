@@ -1,6 +1,7 @@
-import { Grid, Heading, Link, Text } from "@chakra-ui/react";
+import { Button, Grid, Heading, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import MotionBox from "../MotionBox";
 
 import { OccassionTemplates } from "./templates";
 
@@ -60,11 +61,16 @@ const OccassionWrapper = ({ occassion }: OccassionWrapperProps) => {
     <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
       <Heading>{selectedOccassionTemplate.title}</Heading>
 
-      <Image
-        src={selectedOccassionTemplate.imageSrc[randomImageNum]}
-        width={400}
-        height={400}
-      />
+      <MotionBox
+        animate={{ y: 20 }}
+        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+      >
+        <Image
+          src={selectedOccassionTemplate.imageSrc[randomImageNum]}
+          width={400}
+          height={400}
+        />
+      </MotionBox>
 
       {selectedOccassionTemplate.assetSource &&
         (selectedOccassionTemplate.assetSource.url ? (
