@@ -14,6 +14,7 @@
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@fontsource/abril-fatface": "^4.1.0",
+    "@fontsource/caveat": "^4.1.0",
     "@fontsource/inter": "^4.1.0",
     "formik": "^2.2.6",
     "framer-motion": "^2.9.4",

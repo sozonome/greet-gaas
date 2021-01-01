@@ -2165,6 +2165,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/abril-fatface/-/abril-fatface-4.1.0.tgz#ec50ebdc6288abe3ca8940dea422acabb493ed49"
   integrity sha512-r+iFGcvwqOHDzTdTUBfl+KHuWGzOLuL/8C3m9s22RO+bm+NDWOjw+weFMhMiqzVr34w7C0eaf7yVgRTy5fe6nQ==
 
+"@fontsource/caveat@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/caveat/-/caveat-4.1.0.tgz#c7da25cd3c43d8204ed79f46a20e299a0c3e76d0"
+  integrity sha512-iKqUp0XUE20nWYiBjdHoLWCdYw7n8o1xu7W5Q5kE5Q+/JOYU8Vy0WV4S9+XPbgi/17ISrUqrGzKsALmgd2i2TA==
+
 "@fontsource/inter@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.1.0.tgz#5c5d5411487aca1b7a8caccba5e995b81051a14a"
