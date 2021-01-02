@@ -27,15 +27,15 @@ const GreetingsTemplate = ({
 
   return (
     <Grid textAlign="center" gap={2}>
-      <Text fontSize="lg">
-        Hello{" "}
-        {name && (
+      {name && (
+        <Text fontSize="lg">
+          Hello{" "}
           <Text as="span" textTransform="capitalize">
             {name}
           </Text>
-        )}
-        ,
-      </Text>
+          ,
+        </Text>
+      )}
 
       <OccasionWrapper occasion={occasion} />
 
