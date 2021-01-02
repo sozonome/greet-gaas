@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const APP_NAME = "GaaS";
-const APP_DESCRIPTION = "Greeting as a Service";
+export const APP_NAME = "Greetings as a Service (GaaS)";
+const APP_DESCRIPTION = "Greetings as a Service";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
