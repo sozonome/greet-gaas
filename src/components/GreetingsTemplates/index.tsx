@@ -29,9 +29,11 @@ const GreetingsTemplate = ({
     <Grid textAlign="center" gap={2}>
       <Text fontSize="lg">
         Hello{" "}
-        <Text as="span" textTransform="capitalize">
-          {name}
-        </Text>
+        {name && (
+          <Text as="span" textTransform="capitalize">
+            {name}
+          </Text>
+        )}
         ,
       </Text>
 
