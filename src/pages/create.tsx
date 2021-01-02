@@ -32,6 +32,7 @@ type CreateFormType = {
   name: string;
   occasion: string;
   customMessage?: string;
+  from?: string;
 };
 
 const Create = () => {
@@ -39,7 +40,7 @@ const Create = () => {
   const toast = useToast();
 
   const {
-    values: { name, occasion, customMessage },
+    values: { name, occasion, customMessage, from },
     errors,
     dirty,
     handleChange,
@@ -49,6 +50,7 @@ const Create = () => {
       name: "",
       occasion: "",
       customMessage: "",
+      from: "",
     },
     validate: (formValues: CreateFormType) => {
       const errors: FormikErrors<CreateFormType> = {};
@@ -61,6 +63,10 @@ const Create = () => {
       if (formValues.customMessage.indexOf("script") > -1) {
         errors.customMessage = "invalid characters";
       }
+      if (formValues.from.indexOf("script") > -1) {
+        errors.from = "invalid characters";
+      }
+
       if (formValues.occasion === "") {
         errors.occasion = "Occasion must be picked";
       }
@@ -74,7 +80,7 @@ const Create = () => {
 
   const greetingRoute = `/greetings/${occasion}?name=${escape(name)}${
     customMessage ? `&message=${escape(customMessage)}` : ""
-  }`;
+  }${from ? `&from=${escape(from)}` : ""}`;
 
   const handleCopyLink = () => {
     navigator.clipboard
@@ -159,6 +165,22 @@ const Create = () => {
           <FormHelperText color="crimson">
             {errors.customMessage}
           </FormHelperText>
+        )}
+      </FormControl>
+
+      <FormControl>
+        <FormLabel>From</FormLabel>
+        <Input
+          type="text"
+          placeholder="wanna include your name as a sender?"
+          value={from}
+          name="from"
+          errorBorderColor="crimson"
+          isInvalid={errors?.from ? true : false}
+          onChange={handleChange}
+        />
+        {errors?.from && (
+          <FormHelperText color="crimson">{errors.from}</FormHelperText>
         )}
       </FormControl>
 

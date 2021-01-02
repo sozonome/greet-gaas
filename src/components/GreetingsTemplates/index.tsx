@@ -1,6 +1,7 @@
-import { Button, Grid, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
 import MotionBox from "../MotionBox";
 
 import { OccasionTemplates } from "./templates";
@@ -11,12 +12,14 @@ export type GreetingsTemplateProps = {
   occasion?: OccasionsKeyType;
   name?: string;
   message?: string;
+  from?: string;
 };
 
 const GreetingsTemplate = ({
   occasion,
   name,
   message,
+  from,
 }: GreetingsTemplateProps) => {
   if (!occasion) {
     return null;
@@ -35,6 +38,13 @@ const GreetingsTemplate = ({
       <OccasionWrapper occasion={occasion} />
 
       {message && <Text fontSize="sm">{message}</Text>}
+
+      {from && (
+        <Box marginTop={4}>
+          <Text fontSize="xs">from:</Text>
+          <Text>{from}</Text>
+        </Box>
+      )}
     </Grid>
   );
 };

@@ -27,7 +27,7 @@ export const OccasionTemplates: Array<OccasionTemplateType> = [
       "/chinese-new-year/People celebrating Chinese New Year-rafiki.svg",
     ],
     assetSource: { name: "Freepik Storyset", url: "https://storyset.com" },
-    customFont: "Caveat"
+    customFont: "Caveat",
   },
   {
     type: "christmas",

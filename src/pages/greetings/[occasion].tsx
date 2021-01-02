@@ -11,13 +11,14 @@ const GreetingPage = () => {
   const router = useRouter();
 
   const {
-    query: { occasion, name, message },
+    query: { occasion, name, message, from },
   } = router;
 
   const greetingTemplatesProps: GreetingsTemplateProps = {
     occasion: occasion as OccasionsKeyType,
-    name: name as string,
-    message: message as string,
+    name: unescape(name as string),
+    message: unescape(message as string),
+    from: unescape(from as string),
   };
 
   return (
@@ -25,6 +26,7 @@ const GreetingPage = () => {
       <Head>
         <title>Hello {name} | Greeting as a Service</title>
       </Head>
+      {console.log({ greetingTemplatesProps })}
       <GreetingsTemplate {...greetingTemplatesProps} />
     </Box>
   );
