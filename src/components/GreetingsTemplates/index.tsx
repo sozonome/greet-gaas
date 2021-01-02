@@ -62,7 +62,7 @@ const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
 
   if (!selectedOccasionTemplate) {
     router.push("/404");
-    return;
+    return null;
   }
 
   const randomImageNum = Math.floor(
