@@ -14,7 +14,11 @@ const Home = () => {
       <Heading letterSpacing={1} fontWeight="extrabold">
         Create Greetings for your Folks!
       </Heading>
-      <Image marginX={[0, 16, 32]} src="/High five-cuate.svg" />
+      <Image
+        marginX="auto"
+        width={[240, 320, 400]}
+        src="/High five-cuate.svg"
+      />
       <ChakraLink fontSize="xs" isExternal href="https://storyset.com/">
         Illustration by Freepik Storyset
       </ChakraLink>
