@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -22,6 +23,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { FormikErrors, useFormik } from "formik";
+import CryptoJS from "crypto-js";
 
 import {
   occasions,
@@ -33,6 +35,7 @@ type CreateFormType = {
   occasion: string;
   customMessage?: string;
   from?: string;
+  isEncrypted?: boolean;
 };
 
 const Create = () => {
@@ -40,7 +43,7 @@ const Create = () => {
   const toast = useToast();
 
   const {
-    values: { name, occasion, customMessage, from },
+    values: { name, occasion, customMessage, from, isEncrypted },
     errors,
     dirty,
     handleChange,
@@ -51,6 +54,7 @@ const Create = () => {
       occasion: "",
       customMessage: "",
       from: "",
+      isEncrypted: false,
     },
     validate: (formValues: CreateFormType) => {
       const errors: FormikErrors<CreateFormType> = {};
@@ -78,9 +82,22 @@ const Create = () => {
     },
   });
 
-  const greetingRoute = `/greetings/${occasion}?name=${escape(name)}${
-    customMessage ? `&message=${escape(customMessage)}` : ""
-  }${from ? `&from=${escape(from)}` : ""}`;
+  const processString = (text: string) =>
+    isEncrypted
+      ? escape(
+          CryptoJS.AES.encrypt(text, process.env.NEXT_PUBLIC_SECRET_PASSPHRASE)
+            .toString()
+            .replace("+", "xMl3Jk")
+            .replace("/", "Por21Ld")
+            .replace("=", "Ml32")
+        )
+      : escape(text);
+
+  const greetingRoute = `/greetings/${
+    isEncrypted ? "enc/" : ""
+  }${occasion}?name=${processString(name)}${
+    customMessage ? `&message=${processString(customMessage)}` : ""
+  }${from ? `&from=${processString(from)}` : ""}`;
 
   const handleCopyLink = () => {
     navigator.clipboard
@@ -182,6 +199,16 @@ const Create = () => {
         {errors?.from && (
           <FormHelperText color="crimson">{errors.from}</FormHelperText>
         )}
+      </FormControl>
+
+      <FormControl>
+        <Checkbox
+          checked={isEncrypted}
+          name="isEncrypted"
+          onChange={handleChange}
+        >
+          Please encrypt this message
+        </Checkbox>
       </FormControl>
 
       <Button
