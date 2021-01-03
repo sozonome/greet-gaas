@@ -8,9 +8,9 @@ const decrypt = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const decryptedText = CryptoJS.AES.decrypt(
     unescape(text as string)
-      .replace("xMl3Jk", "+")
-      .replace("Por21Ld", "/")
-      .replace("Ml32", "="),
+      .replace(/xMl3Jk/g, "+")
+      .replace(/Por21Ld/g, "/")
+      .replace(/Ml32/g, "="),
     process.env.SECRET_PASSPHRASE
   ).toString(CryptoJS.enc.Utf8);
 

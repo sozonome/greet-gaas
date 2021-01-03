@@ -11,9 +11,9 @@ const encrpyt = async (req: NextApiRequest, res: NextApiResponse) => {
     process.env.SECRET_PASSPHRASE
   )
     .toString()
-    .replace("+", "xMl3Jk")
-    .replace("/", "Por21Ld")
-    .replace("=", "Ml32");
+    .replace(/\+/g, "xMl3Jk")
+    .replace(/\//g, "Por21Ld")
+    .replace(/\=/g, "Ml32");
 
   res.status(200);
   res.json(encryptedText);
