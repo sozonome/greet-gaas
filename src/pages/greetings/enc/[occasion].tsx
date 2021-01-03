@@ -4,13 +4,9 @@ import { useRouter } from "next/router";
 
 import GreetingsTemplate, {
   GreetingsTemplateProps,
-} from "../../components/GreetingsTemplates";
-import { OccasionsKeyType } from "../../components/GreetingsTemplates/types";
+} from "../../../components/GreetingsTemplates";
+import { OccasionsKeyType } from "../../../components/GreetingsTemplates/types";
 
-/**
- * @todo DEPRECATED
- * will deprecate this page / replace this with enc
- */
 const GreetingPage = () => {
   const router = useRouter();
 
