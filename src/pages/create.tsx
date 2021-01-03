@@ -18,6 +18,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Spinner,
   Text,
   useDisclosure,
   useToast,
@@ -44,6 +45,7 @@ const Create = () => {
   const toast = useToast();
 
   const [generatedUrl, setGeneratedUrl] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     values: { name, occasion, customMessage, from, isEncrypted },
@@ -81,16 +83,19 @@ const Create = () => {
       return errors;
     },
     onSubmit: async () => {
+      isEncrypted ? setLoading(true) : setLoading(false);
+      onOpen();
       const updateGeneratedUrl = await greetingRoute();
       setGeneratedUrl(updateGeneratedUrl);
-      onOpen();
+      setLoading(false);
     },
   });
 
   const encryptText = async (text: string) =>
     await axios("/api/encrypt", { params: { text } }).then((res) => res.data);
 
-  const processString = async (text: string) =>  escape(isEncrypted ? await encryptText(text) : text);
+  const processString = async (text: string) =>
+    escape(isEncrypted ? await encryptText(text) : text);
 
   const greetingRoute = async () => {
     return `/greetings/${
@@ -223,27 +228,31 @@ const Create = () => {
       <Modal isOpen={isOpen} isCentered onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Nice!</ModalHeader>
+          <ModalHeader>{loading ? "Please Wait..." : "Nice!"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody textAlign="center">
-            <Grid gap={4}>
-              <Box>
-                <Image src="/Online friends-pana.svg" />
-                <Link fontSize="xs" isExternal href="https://storyset.com/">
-                  Illustration by Freepik Storyset
-                </Link>
-              </Box>
+            {loading ? (
+              <Spinner size="lg" textAlign="center" />
+            ) : (
+              <Grid gap={4}>
+                <Box>
+                  <Image src="/Online friends-pana.svg" />
+                  <Link fontSize="xs" isExternal href="https://storyset.com/">
+                    Illustration by Freepik Storyset
+                  </Link>
+                </Box>
 
-              <Text>Here is the greeting page generated:</Text>
+                <Text>Here is the greeting page generated:</Text>
 
-              <Button onClick={handleCopyLink} colorScheme="teal">
-                Copy Link
-              </Button>
+                <Button onClick={handleCopyLink} colorScheme="teal">
+                  Copy Link
+                </Button>
 
-              <Button onClick={handleRoutePreview} colorScheme="yellow">
-                Preview
-              </Button>
-            </Grid>
+                <Button onClick={handleRoutePreview} colorScheme="yellow">
+                  Preview
+                </Button>
+              </Grid>
+            )}
           </ModalBody>
 
           <ModalFooter>
