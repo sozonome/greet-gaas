@@ -23,7 +23,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { FormikErrors, useFormik } from "formik";
-import CryptoJS from "crypto-js";
+import axios from "axios";
+import { useState } from "react";
 
 import {
   occasions,
@@ -41,6 +42,8 @@ type CreateFormType = {
 const Create = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+
+  const [generatedUrl, setGeneratedUrl] = useState<string>("");
 
   const {
     values: { name, occasion, customMessage, from, isEncrypted },
@@ -77,32 +80,30 @@ const Create = () => {
 
       return errors;
     },
-    onSubmit: () => {
+    onSubmit: async () => {
+      const updateGeneratedUrl = await greetingRoute();
+      setGeneratedUrl(updateGeneratedUrl);
       onOpen();
     },
   });
 
-  const processString = (text: string) =>
-    isEncrypted
-      ? escape(
-          CryptoJS.AES.encrypt(text, process.env.NEXT_PUBLIC_SECRET_PASSPHRASE)
-            .toString()
-            .replace("+", "xMl3Jk")
-            .replace("/", "Por21Ld")
-            .replace("=", "Ml32")
-        )
-      : escape(text);
+  const encryptText = async (text: string) =>
+    await axios("/api/encrypt", { params: { text } }).then((res) => res.data);
 
-  const greetingRoute = `/greetings/${
-    isEncrypted ? "enc/" : ""
-  }${occasion}?name=${processString(name)}${
-    customMessage ? `&message=${processString(customMessage)}` : ""
-  }${from ? `&from=${processString(from)}` : ""}`;
+  const processString = async (text: string) =>  escape(isEncrypted ? await encryptText(text) : text);
+
+  const greetingRoute = async () => {
+    return `/greetings/${
+      isEncrypted ? "enc/" : ""
+    }${occasion}?name=${await processString(name)}${
+      customMessage ? `&message=${await processString(customMessage)}` : ""
+    }${from ? `&from=${await processString(from)}` : ""}`;
+  };
 
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(
-        `${document.location.protocol}//${document.location.host}${greetingRoute}`
+        `${document.location.protocol}//${document.location.host}${generatedUrl}`
       )
       .then(() => {
         toast({
@@ -115,7 +116,7 @@ const Create = () => {
   };
 
   const handleRoutePreview = () => {
-    window.open(greetingRoute, "_blank");
+    window.open(generatedUrl, "_blank");
   };
 
   return (

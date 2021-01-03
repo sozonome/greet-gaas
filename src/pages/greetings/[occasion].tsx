@@ -8,8 +8,8 @@ import GreetingsTemplate, {
 import { OccasionsKeyType } from "../../components/GreetingsTemplates/types";
 
 /**
- * @todo DEPRECATED
- * will deprecate this page / replace this with enc
+ * @todo plan to deprecate
+ * will deprecate this page / replace this with enc if want to enforce encryption
  */
 const GreetingPage = () => {
   const router = useRouter();
