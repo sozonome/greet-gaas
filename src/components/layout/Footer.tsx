@@ -1,4 +1,5 @@
 import { Box, Grid, Link, Text } from "@chakra-ui/react";
+
 import Badges from "./Badges";
 
 const Footer = () => {

@@ -2,7 +2,7 @@ import { Box, Grid, Heading, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import MotionBox from "../MotionBox";
+import MotionBox from "components/MotionBox";
 
 import { OccasionTemplates } from "./templates";
 
@@ -43,7 +43,9 @@ const GreetingsTemplate = ({
 
       {from && (
         <Box marginTop={4}>
-          <Text fontSize="xs">from:</Text>
+          <Text a fontSize="xs">
+            from:
+          </Text>
           <Text>{from}</Text>
         </Box>
       )}

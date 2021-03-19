@@ -4,10 +4,10 @@ import "@fontsource/inter/latin.css";
 import "@fontsource/abril-fatface/latin.css";
 import "@fontsource/caveat/latin.css";
 
-import Layout from "../components/layout";
+import Layout from "components/layout";
 
-import customTheme from "../styles/customTheme";
-import "../styles/globals.css";
+import customTheme from "styles/customTheme";
+import "styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (

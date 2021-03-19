@@ -27,10 +27,7 @@ import { FormikErrors, useFormik } from "formik";
 import axios from "axios";
 import { useState } from "react";
 
-import {
-  occasions,
-  occasionsText,
-} from "../components/GreetingsTemplates/types";
+import { occasions, occasionsText } from "components/GreetingsTemplates/types";
 
 type CreateFormType = {
   name: string;

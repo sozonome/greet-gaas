@@ -1,7 +1,7 @@
 import { Flex, Heading, Box, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-import AccessibleLink from "../AccessibleLink";
+import AccessibleLink from "components/AccessibleLink";
 import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 

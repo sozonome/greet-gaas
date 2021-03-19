@@ -1,7 +1,6 @@
 export enum Occasions {
   "new-year",
   "chinese-new-year",
-  // "ramadhan",
   "christmas",
 }
 

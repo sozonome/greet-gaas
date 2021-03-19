@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 
 import GreetingsTemplate, {
   GreetingsTemplateProps,
-} from "../../../components/GreetingsTemplates";
-import { OccasionsKeyType } from "../../../components/GreetingsTemplates/types";
+} from "components/GreetingsTemplates";
+import { OccasionsKeyType } from "components/GreetingsTemplates/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
