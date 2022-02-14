@@ -18,13 +18,14 @@ const Home = () => {
         marginX="auto"
         width={[240, 320, 400]}
         src="/High five-cuate.svg"
+        alt="illustration"
       />
       <ChakraLink fontSize="xs" isExternal href="https://storyset.com/">
         Illustration by Freepik Storyset
       </ChakraLink>
 
-      <Link href="/create">
-        <Button size="lg" marginX={[0, 16, 32]}>
+      <Link href="/create" passHref>
+        <Button as="a" size="lg" marginX={[0, 16, 32]}>
           Create One
         </Button>
       </Link>
