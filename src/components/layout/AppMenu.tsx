@@ -89,7 +89,7 @@ const AppMenu = () => {
                         colorMode === "light" ? "gray.200" : "gray.600",
                     }}
                   >
-                    <Image src={icon} width={12} />
+                    <Image src={icon} width={12} alt="menu" />
                     <Box marginLeft={4}>
                       <Heading size="sm" fontFamily="Inter">
                         {name}

@@ -43,9 +43,7 @@ const GreetingsTemplate = ({
 
       {from && (
         <Box marginTop={4}>
-          <Text a fontSize="xs">
-            from:
-          </Text>
+          <Text fontSize="xs">from:</Text>
           <Text>{from}</Text>
         </Box>
       )}
@@ -91,6 +89,7 @@ const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
           src={selectedOccasionTemplate.imageSrc[randomImageNum]}
           width={400}
           height={400}
+          alt="illustration"
         />
       </MotionBox>
 
