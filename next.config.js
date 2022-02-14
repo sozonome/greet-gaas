@@ -1,5 +1,6 @@
 const withPWA = require("next-pwa");
 
+/** @type {import('next').NextConfig} */
 module.exports = withPWA({
   pwa: {
     disable:
@@ -12,8 +13,10 @@ module.exports = withPWA({
     dest: "public",
     register: true,
   },
-  target: "serverless",
   images: {
     domains: ["api.producthunt.com"],
+  },
+  eslint: {
+    dirs: ["src"],
   },
 });
