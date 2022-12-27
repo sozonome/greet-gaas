@@ -23,6 +23,9 @@ const customTheme = extendTheme({
       },
     },
   },
+  config: {
+    disableTransitionOnChange: false,
+  },
 });
 
 export default customTheme;
