@@ -20,9 +20,9 @@ const GreetingPage = () => {
 
   const greetingTemplatesProps: GreetingsTemplateProps = {
     occasion: occasion as OccasionsKeyType,
-    name: name ? unescape(name as string) : undefined,
-    message: message ? unescape(message as string) : undefined,
-    from: from ? unescape(from as string) : undefined,
+    name: name ? decodeURI(name as string) : undefined,
+    message: message ? decodeURI(message as string) : undefined,
+    from: from ? decodeURI(from as string) : undefined,
   };
 
   return (
