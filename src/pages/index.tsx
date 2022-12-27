@@ -4,7 +4,6 @@ import {
   Heading,
   Image,
   Link as ChakraLink,
-  Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
 
@@ -24,11 +23,9 @@ const Home = () => {
         Illustration by Freepik Storyset
       </ChakraLink>
 
-      <Link href="/create" passHref>
-        <Button as="a" size="lg" marginX={[0, 16, 32]}>
-          Create One
-        </Button>
-      </Link>
+      <Button as={Link} href="/create" size="lg" marginX={[0, 16, 32]}>
+        Create One
+      </Button>
     </Grid>
   );
 };

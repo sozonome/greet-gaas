@@ -1,7 +1,7 @@
 import { Flex, Heading, Box, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-import AccessibleLink from "components/AccessibleLink";
 import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 
@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <Flex alignSelf="start" as="header" width="full" align="center">
-      <AccessibleLink href="/">
+      <Link href="/">
         <Heading
           as="h1"
           letterSpacing={2}
@@ -23,7 +23,7 @@ const Header = () => {
           GaaS
         </Heading>
         <Text fontSize={isGreetingPage && "xs"}>Greetings as a Service</Text>
-      </AccessibleLink>
+      </Link>
 
       <Box marginLeft="auto">
         <ThemeToggle />
