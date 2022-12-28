@@ -1,10 +1,7 @@
 import { occasionTemplates } from "lib/components/GreetingsTemplates/templates";
 import { GetServerSideProps } from "next";
 
-import type {
-  OccasionsKeyType,
-  OccasionTemplateType,
-} from "lib/components/GreetingsTemplates/types";
+import type { OccasionsKeyType } from "lib/components/GreetingsTemplates/types";
 import { decryptText } from "lib/utils/decryptText";
 
 import type {
