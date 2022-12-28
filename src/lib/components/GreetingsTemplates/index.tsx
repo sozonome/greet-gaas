@@ -11,6 +11,11 @@ type OccasionWrapperProps = Pick<
   "occasion" | "imageSrc"
 >;
 
+const imageSize = {
+  base: 200,
+  sm: 300,
+};
+
 const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
   const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
     ({ type }) => type === occasion
@@ -28,8 +33,8 @@ const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
       >
         <Image
           src={imageSrc ?? selectedOccasionTemplate.imageSrc[0]}
-          width={400}
-          height={400}
+          width={imageSize}
+          height={imageSize}
           alt="illustration"
         />
       </MotionBox>

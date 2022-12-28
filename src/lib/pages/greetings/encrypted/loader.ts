@@ -28,15 +28,11 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const decryptedName = query.name
-    ? decryptText(query.name as string)
-    : undefined;
+  const decryptedName = query.name ? decryptText(query.name as string) : null;
   const decryptedMessage = query.message
     ? decryptText(query.message as string)
-    : undefined;
-  const decryptedFrom = query.from
-    ? decryptText(query.from as string)
-    : undefined;
+    : null;
+  const decryptedFrom = query.from ? decryptText(query.from as string) : null;
   const imageSrc = getTemplateImage(occasion as OccasionsKeyType);
 
   return {
