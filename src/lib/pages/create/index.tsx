@@ -1,49 +1,39 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable sonarjs/no-nested-template-literals */
 import {
   Box,
   Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
   Grid,
   Heading,
   Image,
-  Input,
   Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Select,
   Spinner,
   Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import type { FormikErrors } from "formik";
-import { useFormik } from "formik";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import {
   occasions,
   occasionsText,
 } from "lib/components/GreetingsTemplates/types";
+import ControlledInput from "lib/components/shared/form/ControlledInput";
+import FormControlWrapper from "lib/components/shared/form/FormControlWrapper";
+import ModalWrapper from "lib/components/shared/ModalWrapper";
 
-type CreateFormType = {
-  name: string;
-  occasion: string;
-  customMessage?: string;
-  from?: string;
-  isEncrypted?: boolean;
+import type { CreateFormType } from "./models";
+import { createFormRequestScheme } from "./models";
+
+const initialValues: CreateFormType = {
+  name: "",
+  occasion: "",
+  customMessage: "",
+  from: "",
 };
-
-const defaultErrorMessage = "invalid characters";
 
 const Create = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -53,61 +43,38 @@ const Create = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    values: { name, occasion, customMessage, from, isEncrypted },
-    errors,
-    dirty,
-    handleChange,
+    watch,
+    register,
+    formState: { errors, isDirty, isValid },
     handleSubmit,
-  } = useFormik<CreateFormType>({
-    initialValues: {
-      name: "",
-      occasion: "",
-      customMessage: "",
-      from: "",
-      isEncrypted: true,
-    },
-    validate: (formValues: CreateFormType) => {
-      const formErrors: FormikErrors<CreateFormType> = {};
-      if (formValues.name === "") {
-        formErrors.name = "Name must be filled";
-      }
-      if (formValues.name.indexOf("script") > -1) {
-        formErrors.name = defaultErrorMessage;
-      }
-      if (formValues.customMessage.indexOf("script") > -1) {
-        formErrors.customMessage = defaultErrorMessage;
-      }
-      if (formValues.from.indexOf("script") > -1) {
-        formErrors.from = defaultErrorMessage;
-      }
-
-      if (formValues.occasion === "") {
-        errors.occasion = "Occasion must be picked";
-      }
-
-      return formErrors;
-    },
-    onSubmit: async () => {
-      setLoading(isEncrypted);
-      onOpen();
-      const updateGeneratedUrl = await greetingRoute();
-      setGeneratedUrl(updateGeneratedUrl);
-      setLoading(false);
-    },
+  } = useForm<CreateFormType>({
+    defaultValues: initialValues,
+    mode: "onChange",
+    resolver: zodResolver(createFormRequestScheme),
   });
+  const values = watch();
+  const { name, occasion, customMessage, from } = values;
 
-  const encryptText = async (text: string) =>
-    axios("/api/encrypt", { params: { text } }).then((res) => res.data);
+  const encryptText = (text: string) =>
+    axios("/api/encrypt", { params: { text } }).then(
+      (res) => res.data as string
+    );
 
   const processString = async (text: string) =>
-    decodeURI(isEncrypted ? await encryptText(text) : text);
+    decodeURI(await encryptText(text));
 
   const greetingRoute = async () => {
-    return `/greetings/${
-      isEncrypted ? "enc/" : ""
-    }${occasion}?name=${await processString(name)}${
+    return `/greetings/enc/${occasion}?name=${await processString(name)}${
       customMessage ? `&message=${await processString(customMessage)}` : ""
     }${from ? `&from=${await processString(from)}` : ""}`;
+  };
+
+  const generateLink = async () => {
+    setLoading(true);
+    onOpen();
+    const updateGeneratedUrl = await greetingRoute();
+    setGeneratedUrl(updateGeneratedUrl);
+    setLoading(false);
   };
 
   const handleCopyLink = () => {
@@ -133,16 +100,13 @@ const Create = () => {
     <Grid gap={6}>
       <Heading letterSpacing={1}>Create a Greeting</Heading>
 
-      <FormControl isRequired>
+      <FormControlWrapper isRequired errorText={errors.occasion?.message}>
         <Select
+          {...register("occasion")}
+          isInvalid={!!errors.occasion?.message}
           placeholder="what's the occasion?"
-          name="occasion"
-          onChange={handleChange}
           size="lg"
-          value={occasion}
           textTransform="capitalize"
-          errorBorderColor="crimson"
-          isInvalid={!!errors?.occasion}
         >
           {occasionsText.map((occasionText: string, index: number) => {
             return (
@@ -157,104 +121,74 @@ const Create = () => {
             );
           })}
         </Select>
-        {errors?.occasion && (
-          <FormHelperText color="crimson">{errors.occasion}</FormHelperText>
-        )}
-      </FormControl>
+      </FormControlWrapper>
 
-      <FormControl isRequired>
-        <FormLabel>Name</FormLabel>
-        <Input
-          type="text"
-          placeholder="who do you want to sent it for?"
-          value={name}
-          name="name"
-          errorBorderColor="crimson"
-          isInvalid={!!errors?.name}
-          onChange={handleChange}
-        />
-        {errors?.name && (
-          <FormHelperText color="crimson">{errors.name}</FormHelperText>
-        )}
-      </FormControl>
+      <ControlledInput
+        {...register("name")}
+        errorText={errors.name?.message}
+        isRequired
+        label="Name"
+        placeholder="who do you want to sent it for?"
+      />
 
-      <FormControl>
-        <FormLabel>Custom Message</FormLabel>
-        <Input
-          type="text"
-          placeholder="any custom message?"
-          value={customMessage}
-          name="customMessage"
-          errorBorderColor="crimson"
-          isInvalid={!!errors?.customMessage}
-          onChange={handleChange}
-        />
-        {errors?.customMessage && (
-          <FormHelperText color="crimson">
-            {errors.customMessage}
-          </FormHelperText>
-        )}
-      </FormControl>
+      <ControlledInput
+        {...register("customMessage")}
+        label="Custom Message"
+        placeholder="any custom message?"
+        errorText={errors.customMessage?.message}
+      />
 
-      <FormControl>
-        <FormLabel>From</FormLabel>
-        <Input
-          type="text"
-          placeholder="wanna include your name as a sender?"
-          value={from}
-          name="from"
-          errorBorderColor="crimson"
-          isInvalid={!!errors?.from}
-          onChange={handleChange}
-        />
-        {errors?.from && (
-          <FormHelperText color="crimson">{errors.from}</FormHelperText>
-        )}
-      </FormControl>
+      <ControlledInput
+        {...register("from")}
+        label="From"
+        placeholder="wanna include your name as a sender?"
+        errorText={errors.from?.message}
+      />
 
       <Button
-        disabled={!dirty || (dirty && Object.keys(errors).length > 0)}
-        onClick={() => handleSubmit()}
+        disabled={!isDirty || !isValid}
+        onClick={handleSubmit(generateLink)}
         colorScheme="green"
       >
         Generate!
       </Button>
 
-      <Modal isOpen={isOpen} isCentered onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{loading ? "Please Wait..." : "Nice!"}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody textAlign="center">
-            {loading ? (
-              <Spinner size="lg" textAlign="center" />
-            ) : (
-              <Grid gap={4}>
-                <Box>
-                  <Image src="/Online friends-pana.svg" alt="illustration" />
-                  <Link fontSize="xs" isExternal href="https://storyset.com/">
-                    Illustration by Freepik Storyset
-                  </Link>
-                </Box>
+      <ModalWrapper
+        isOpen={isOpen}
+        onClose={onClose}
+        size="xs"
+        header={loading ? "Please Wait..." : "Nice!"}
+        body={
+          loading ? (
+            <Spinner size="lg" textAlign="center" />
+          ) : (
+            <Grid gap={4}>
+              <Box textAlign="center">
+                <Image
+                  src="/Online friends-pana.svg"
+                  alt="illustration"
+                  height={120}
+                  marginX="auto"
+                />
+                <Link fontSize="xs" isExternal href="https://storyset.com/">
+                  Illustration by Freepik Storyset
+                </Link>
+              </Box>
 
-                <Text>Here is the greeting page generated:</Text>
+              <Text>Here is the greeting page generated:</Text>
 
-                <Button onClick={handleCopyLink} colorScheme="teal">
-                  Copy Link
-                </Button>
+              <Button onClick={handleCopyLink} colorScheme="teal">
+                Copy Link
+              </Button>
 
-                <Button onClick={handleRoutePreview} colorScheme="yellow">
-                  Preview
-                </Button>
-              </Grid>
-            )}
-          </ModalBody>
-
-          <ModalFooter>
-            <Button onClick={onClose}>Back</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+              <Button onClick={handleRoutePreview} colorScheme="yellow">
+                Preview
+              </Button>
+            </Grid>
+          )
+        }
+        footer={<Button onClick={onClose}>Back</Button>}
+      />
     </Grid>
   );
 };

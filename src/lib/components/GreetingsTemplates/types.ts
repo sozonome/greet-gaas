@@ -34,8 +34,8 @@ export const occasionsText: Array<string> = occasions.map(
 
 export type GreetingsTemplateProps = {
   occasion?: OccasionsKeyType;
-  name?: string;
-  message?: string;
-  from?: string;
+  name?: string | null;
+  message?: string | null;
+  from?: string | null;
   imageSrc?: string;
 };
