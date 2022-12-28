@@ -1,15 +1,13 @@
-import { Box } from "@chakra-ui/react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 
 import GreetingsTemplate, {
   GreetingsTemplateProps,
-} from "components/GreetingsTemplates";
-import { OccasionsKeyType } from "components/GreetingsTemplates/types";
+} from "lib/components/GreetingsTemplates";
+import { OccasionsKeyType } from "lib/components/GreetingsTemplates/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const GreetingPage = () => {
+const EncryptedGreetingPage = () => {
   const router = useRouter();
   const {
     query: { occasion, name: qName, message: qMessage, from: qFrom },
@@ -47,16 +45,7 @@ const GreetingPage = () => {
     from,
   };
 
-  return (
-    <Box>
-      <Head>
-        <title>
-          Hello {greetingTemplatesProps.name} | Greeting as a Service
-        </title>
-      </Head>
-      <GreetingsTemplate {...greetingTemplatesProps} />
-    </Box>
-  );
+  return <GreetingsTemplate {...greetingTemplatesProps} />;
 };
 
-export default GreetingPage;
+export default EncryptedGreetingPage;

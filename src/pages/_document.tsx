@@ -6,7 +6,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import customTheme from "styles/theme";
+import customTheme from "lib/styles/theme";
 
 export const APP_NAME = "Greetings as a Service (GaaS)";
 const APP_DESCRIPTION = "Greetings as a Service";

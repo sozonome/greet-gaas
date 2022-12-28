@@ -1,10 +1,10 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
 
-import Layout from "components/layout";
+import Layout from "lib/layout";
 
-import customTheme from "styles/theme";
-import "styles/globals.css";
+import customTheme from "lib/styles/theme";
+import "lib/styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
