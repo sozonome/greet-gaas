@@ -59,7 +59,7 @@ const Create = () => {
       occasion: "",
       customMessage: "",
       from: "",
-      isEncrypted: false,
+      isEncrypted: true,
     },
     validate: (formValues: CreateFormType) => {
       const errors: FormikErrors<CreateFormType> = {};
@@ -205,16 +205,6 @@ const Create = () => {
         {errors?.from && (
           <FormHelperText color="crimson">{errors.from}</FormHelperText>
         )}
-      </FormControl>
-
-      <FormControl>
-        <Checkbox
-          checked={isEncrypted}
-          name="isEncrypted"
-          onChange={handleChange}
-        >
-          Please encrypt this message
-        </Checkbox>
       </FormControl>
 
       <Button

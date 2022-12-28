@@ -31,3 +31,11 @@ export const occasions: Array<OccasionsKeyType> = Object.keys(Occasions)
 export const occasionsText: Array<string> = occasions.map(
   (occasion: OccasionsKeyType) => occasion.replace(/-/g, " ")
 );
+
+export type GreetingsTemplateProps = {
+  occasion?: OccasionsKeyType;
+  name?: string;
+  message?: string;
+  from?: string;
+  imageSrc?: string;
+};

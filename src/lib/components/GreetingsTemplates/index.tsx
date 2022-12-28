@@ -1,31 +1,19 @@
-import { Box, Grid, Heading, Link, Text } from "@chakra-ui/react";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import { Box, Grid, Heading, Image, Link, Text } from "@chakra-ui/react";
 
 import MotionBox from "lib/components/MotionBox";
 
-import { OccasionTemplates } from "./templates";
+import { occasionTemplates } from "./templates";
 
-import { OccasionsKeyType, OccasionTemplateType } from "./types";
+import { GreetingsTemplateProps, OccasionTemplateType } from "./types";
 import Head from "next/head";
-
-export type GreetingsTemplateProps = {
-  occasion?: OccasionsKeyType;
-  name?: string;
-  message?: string;
-  from?: string;
-};
 
 const GreetingsTemplate = ({
   occasion,
   name,
   message,
   from,
+  imageSrc,
 }: GreetingsTemplateProps) => {
-  if (!occasion) {
-    return null;
-  }
-
   return (
     <>
       <Head>
@@ -42,7 +30,7 @@ const GreetingsTemplate = ({
           </Text>
         )}
 
-        <OccasionWrapper occasion={occasion} />
+        <OccasionWrapper occasion={occasion} imageSrc={imageSrc} />
 
         {message && <Text fontSize="sm">{message}</Text>}
 
@@ -57,42 +45,28 @@ const GreetingsTemplate = ({
   );
 };
 
-type OccasionWrapperProps = Pick<GreetingsTemplateProps, "occasion">;
+type OccasionWrapperProps = Pick<
+  GreetingsTemplateProps,
+  "occasion" | "imageSrc"
+>;
 
-const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
-  const selectedOccasionTemplate: OccasionTemplateType = OccasionTemplates.find(
+const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
+  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
     ({ type }) => type === occasion
-  );
-
-  const router = useRouter();
-
-  if (!selectedOccasionTemplate) {
-    router.push("/404");
-    return null;
-  }
-
-  const randomImageNum = Math.floor(
-    Math.random() * selectedOccasionTemplate.imageSrc.length
   );
 
   return (
     <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
-      <Heading
-        fontFamily={
-          selectedOccasionTemplate.customFont
-            ? selectedOccasionTemplate.customFont
-            : "heading"
-        }
-      >
-        {selectedOccasionTemplate.title}
-      </Heading>
+      <Heading fontFamily="heading">{selectedOccasionTemplate.title}</Heading>
 
       <MotionBox
         animate={{ y: 20 }}
         transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+        display="flex"
+        justifyContent="center"
       >
         <Image
-          src={selectedOccasionTemplate.imageSrc[randomImageNum]}
+          src={imageSrc ?? selectedOccasionTemplate.imageSrc[0]}
           width={400}
           height={400}
           alt="illustration"

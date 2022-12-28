@@ -1,6 +1,6 @@
 import { OccasionTemplateType } from "./types";
 
-export const OccasionTemplates: Array<OccasionTemplateType> = [
+export const occasionTemplates: Array<OccasionTemplateType> = [
   {
     type: "new-year",
     title: "Happy New Year!",
