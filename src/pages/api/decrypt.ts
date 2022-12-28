@@ -7,7 +7,7 @@ const decrypt = async (req: NextApiRequest, res: NextApiResponse) => {
   } = req;
 
   const decryptedText = CryptoJS.AES.decrypt(
-    unescape(text as string)
+    decodeURIComponent(text as string)
       .replace(/xMl3Jk/g, "+")
       .replace(/Por21Ld/g, "/")
       .replace(/Ml32/g, "="),

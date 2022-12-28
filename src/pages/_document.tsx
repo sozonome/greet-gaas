@@ -1,10 +1,12 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ColorModeScript } from "@chakra-ui/react";
+import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import customTheme from "styles/customTheme";
 
 export const APP_NAME = "Greetings as a Service (GaaS)";
 const APP_DESCRIPTION = "Greetings as a Service";
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
@@ -38,6 +40,9 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
+          <ColorModeScript
+            initialColorMode={customTheme.config?.initialColorMode}
+          />
           <Main />
           <NextScript />
         </body>
