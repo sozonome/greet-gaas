@@ -1,16 +1,15 @@
-import { DefaultSeo } from "next-seo";
-
 import { ChakraProvider } from "@chakra-ui/react";
+import { DefaultSeo } from "next-seo";
+import type { AppProps } from "next/app";
 import Head from "next/head";
 
-import Layout from "lib/layout";
-
 import defaultSEOConfig from "../../next-seo.config";
-
+import Layout from "lib/layout";
 import customTheme from "lib/styles/theme";
+
 import "lib/styles/globals.css";
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider theme={customTheme}>
       <Head>

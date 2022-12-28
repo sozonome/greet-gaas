@@ -1,6 +1,7 @@
 import GreetingsTemplate from "lib/components/GreetingsTemplates";
-import { GreetingsTemplateProps } from "lib/components/GreetingsTemplates/types";
-import { UnencryptedGreetingPageProps } from "./types";
+import type { GreetingsTemplateProps } from "lib/components/GreetingsTemplates/types";
+
+import type { UnencryptedGreetingPageProps } from "./types";
 
 /**
  * @deprecated

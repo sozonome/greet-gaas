@@ -1,13 +1,12 @@
 import { Flex, Heading, Box, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const router = useRouter();
-  const { pathname } = router;
 
   const isGreetingPage = router.pathname.indexOf("greetings") > -1;
 

@@ -40,6 +40,7 @@
     "commitlint": "^17.3.0",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
+    "eslint-config-sznm": "^1.0.2",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "next-sitemap": "^3.1.43",

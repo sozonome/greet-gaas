@@ -5,4 +5,4 @@ export const encryptText = (unencryptedText: string) =>
     .toString()
     .replace(/\+/g, "xMl3Jk")
     .replace(/\//g, "Por21Ld")
-    .replace(/\=/g, "Ml32");
+    .replace(/=/g, "Ml32");
