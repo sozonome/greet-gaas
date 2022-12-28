@@ -91,7 +91,7 @@ const AppMenu = () => {
                   >
                     <Image src={icon} width={12} alt="menu" />
                     <Box marginLeft={4}>
-                      <Heading size="sm" fontFamily="Inter">
+                      <Heading size="sm" fontFamily="body">
                         {name}
                       </Heading>
                       {description && <Text fontSize="xs">{description}</Text>}

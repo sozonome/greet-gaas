@@ -75,7 +75,7 @@ const OccasionWrapper = ({ occasion }: OccasionWrapperProps) => {
         fontFamily={
           selectedOccasionTemplate.customFont
             ? selectedOccasionTemplate.customFont
-            : "Abril Fatface"
+            : "heading"
         }
       >
         {selectedOccasionTemplate.title}

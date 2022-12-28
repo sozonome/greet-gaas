@@ -1,12 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
-import "@fontsource/inter/latin.css";
-import "@fontsource/abril-fatface/latin.css";
-import "@fontsource/caveat/latin.css";
 
 import Layout from "components/layout";
 
-import customTheme from "styles/customTheme";
+import customTheme from "styles/theme";
 import "styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {

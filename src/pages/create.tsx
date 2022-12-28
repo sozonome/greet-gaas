@@ -122,7 +122,7 @@ const Create = () => {
   };
 
   return (
-    <Grid gap={8}>
+    <Grid gap={6}>
       <Heading letterSpacing={1}>Create a Greeting</Heading>
 
       <FormControl isRequired>
