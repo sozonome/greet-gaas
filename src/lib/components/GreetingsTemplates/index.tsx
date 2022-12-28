@@ -12,6 +12,7 @@ const GreetingsTemplate = ({
   name,
   message,
   from,
+  imageSrc,
 }: GreetingsTemplateProps) => {
   return (
     <>
@@ -29,7 +30,7 @@ const GreetingsTemplate = ({
           </Text>
         )}
 
-        <OccasionWrapper occasion={occasion} />
+        <OccasionWrapper occasion={occasion} imageSrc={imageSrc} />
 
         {message && <Text fontSize="sm">{message}</Text>}
 
