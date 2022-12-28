@@ -2,11 +2,12 @@ import { Box, Grid, Heading, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import MotionBox from "components/MotionBox";
+import MotionBox from "lib/components/MotionBox";
 
 import { OccasionTemplates } from "./templates";
 
 import { OccasionsKeyType, OccasionTemplateType } from "./types";
+import Head from "next/head";
 
 export type GreetingsTemplateProps = {
   occasion?: OccasionsKeyType;
@@ -26,28 +27,33 @@ const GreetingsTemplate = ({
   }
 
   return (
-    <Grid textAlign="center" gap={2}>
-      {name && (
-        <Text fontSize="lg">
-          Hello{" "}
-          <Text as="span" textTransform="capitalize">
-            {name}
+    <>
+      <Head>
+        <title>Hello {name} | Greeting as a Service</title>
+      </Head>
+      <Grid textAlign="center" gap={2}>
+        {name && (
+          <Text fontSize="lg">
+            Hello{" "}
+            <Text as="span" textTransform="capitalize">
+              {name}
+            </Text>
+            ,
           </Text>
-          ,
-        </Text>
-      )}
+        )}
 
-      <OccasionWrapper occasion={occasion} />
+        <OccasionWrapper occasion={occasion} />
 
-      {message && <Text fontSize="sm">{message}</Text>}
+        {message && <Text fontSize="sm">{message}</Text>}
 
-      {from && (
-        <Box marginTop={4}>
-          <Text fontSize="xs">from:</Text>
-          <Text>{from}</Text>
-        </Box>
-      )}
-    </Grid>
+        {from && (
+          <Box marginTop={4}>
+            <Text fontSize="xs">from:</Text>
+            <Text>{from}</Text>
+          </Box>
+        )}
+      </Grid>
+    </>
   );
 };
 

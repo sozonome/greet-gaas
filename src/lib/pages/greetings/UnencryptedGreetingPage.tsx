@@ -1,17 +1,15 @@
-import { Box } from "@chakra-ui/react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 
 import GreetingsTemplate, {
   GreetingsTemplateProps,
-} from "../../components/GreetingsTemplates";
-import { OccasionsKeyType } from "../../components/GreetingsTemplates/types";
+} from "lib/components/GreetingsTemplates";
+import { OccasionsKeyType } from "lib/components/GreetingsTemplates/types";
 
 /**
  * @todo plan to deprecate
  * will deprecate this page / replace this with enc if want to enforce encryption
  */
-const GreetingPage = () => {
+const UnencryptedGreetingPage = () => {
   const router = useRouter();
 
   const {
@@ -25,14 +23,7 @@ const GreetingPage = () => {
     from: from ? decodeURI(from as string) : undefined,
   };
 
-  return (
-    <Box>
-      <Head>
-        <title>Hello {name} | Greeting as a Service</title>
-      </Head>
-      <GreetingsTemplate {...greetingTemplatesProps} />
-    </Box>
-  );
+  return <GreetingsTemplate {...greetingTemplatesProps} />;
 };
 
-export default GreetingPage;
+export default UnencryptedGreetingPage;
