@@ -22,7 +22,7 @@ const Header = () => {
         >
           GaaS
         </Heading>
-        <Text fontSize={isGreetingPage && "xs"}>Greetings as a Service</Text>
+        <Text fontSize="xs">Greetings as a Service</Text>
       </Link>
 
       <Box marginLeft="auto">

@@ -1,6 +1,12 @@
 import { ColorModeScript } from "@chakra-ui/react";
-import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
-import customTheme from "styles/customTheme";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+import customTheme from "styles/theme";
 
 export const APP_NAME = "Greetings as a Service (GaaS)";
 const APP_DESCRIPTION = "Greetings as a Service";
@@ -15,6 +21,15 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+            rel="stylesheet"
+          />
+
           <meta name="application-name" content={APP_NAME} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
