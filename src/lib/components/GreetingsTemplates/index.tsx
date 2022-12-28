@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import { Box, Grid, Heading, Image, Link, Text } from "@chakra-ui/react";
 
 import MotionBox from "lib/components/MotionBox";
@@ -5,7 +6,6 @@ import MotionBox from "lib/components/MotionBox";
 import { occasionTemplates } from "./templates";
 
 import { GreetingsTemplateProps, OccasionTemplateType } from "./types";
-import Head from "next/head";
 
 const GreetingsTemplate = ({
   occasion,
@@ -14,11 +14,27 @@ const GreetingsTemplate = ({
   from,
   imageSrc,
 }: GreetingsTemplateProps) => {
+  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
+    ({ type }) => type === occasion
+  );
+
+  const description =
+    message ?? "Greetings%20as%20a%20Service%20|%20https://gaas.sznm.dev";
+
   return (
     <>
-      <Head>
-        <title>Hello {name} | Greeting as a Service</title>
-      </Head>
+      <NextSeo
+        title={`Hello ${name}, ${selectedOccasionTemplate.title} | Greetings as a Service`}
+        description={`${selectedOccasionTemplate.title} greetings for ${name}`}
+        openGraph={{
+          images: [
+            {
+              url: `https://og.sznm.dev/api/generate?heading=Hello%20${name},%20${selectedOccasionTemplate.title}&text=${description}&template=color&center=true`,
+              alt: `${selectedOccasionTemplate.title} greetings for ${name} og-image`,
+            },
+          ],
+        }}
+      />
       <Grid textAlign="center" gap={2}>
         {name && (
           <Text fontSize="lg">
