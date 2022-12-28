@@ -1,11 +1,56 @@
-import { NextSeo } from "next-seo";
 import { Box, Grid, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { NextSeo } from "next-seo";
 
 import MotionBox from "lib/components/MotionBox";
 
 import { occasionTemplates } from "./templates";
+import type { GreetingsTemplateProps, OccasionTemplateType } from "./types";
 
-import { GreetingsTemplateProps, OccasionTemplateType } from "./types";
+type OccasionWrapperProps = Pick<
+  GreetingsTemplateProps,
+  "occasion" | "imageSrc"
+>;
+
+const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
+  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
+    ({ type }) => type === occasion
+  );
+
+  return (
+    <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
+      <Heading fontFamily="heading">{selectedOccasionTemplate.title}</Heading>
+
+      <MotionBox
+        animate={{ y: 20 }}
+        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+        display="flex"
+        justifyContent="center"
+      >
+        <Image
+          src={imageSrc ?? selectedOccasionTemplate.imageSrc[0]}
+          width={400}
+          height={400}
+          alt="illustration"
+        />
+      </MotionBox>
+
+      {selectedOccasionTemplate.assetSource &&
+        (selectedOccasionTemplate.assetSource.url ? (
+          <Link
+            href={selectedOccasionTemplate.assetSource.url}
+            isExternal
+            fontSize="xs"
+          >
+            Illlustration by {selectedOccasionTemplate.assetSource.name}
+          </Link>
+        ) : (
+          <Text fontSize="xs">
+            Illustration by {selectedOccasionTemplate.assetSource.name}
+          </Text>
+        ))}
+    </Grid>
+  );
+};
 
 const GreetingsTemplate = ({
   occasion,
@@ -58,52 +103,6 @@ const GreetingsTemplate = ({
         )}
       </Grid>
     </>
-  );
-};
-
-type OccasionWrapperProps = Pick<
-  GreetingsTemplateProps,
-  "occasion" | "imageSrc"
->;
-
-const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
-  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
-    ({ type }) => type === occasion
-  );
-
-  return (
-    <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
-      <Heading fontFamily="heading">{selectedOccasionTemplate.title}</Heading>
-
-      <MotionBox
-        animate={{ y: 20 }}
-        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
-        display="flex"
-        justifyContent="center"
-      >
-        <Image
-          src={imageSrc ?? selectedOccasionTemplate.imageSrc[0]}
-          width={400}
-          height={400}
-          alt="illustration"
-        />
-      </MotionBox>
-
-      {selectedOccasionTemplate.assetSource &&
-        (selectedOccasionTemplate.assetSource.url ? (
-          <Link
-            href={selectedOccasionTemplate.assetSource.url}
-            isExternal
-            fontSize="xs"
-          >
-            Illlustration by {selectedOccasionTemplate.assetSource.name}
-          </Link>
-        ) : (
-          <Text fontSize="xs">
-            Illustration by {selectedOccasionTemplate.assetSource.name}
-          </Text>
-        ))}
-    </Grid>
   );
 };
 

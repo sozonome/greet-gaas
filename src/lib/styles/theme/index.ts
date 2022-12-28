@@ -1,8 +1,8 @@
 import { extendTheme } from "@chakra-ui/react";
 
-import { fonts } from "./fonts";
-import { config } from "./config";
 import { components } from "./components";
+import { config } from "./config";
+import { fonts } from "./fonts";
 
 const customTheme = extendTheme({
   fonts,

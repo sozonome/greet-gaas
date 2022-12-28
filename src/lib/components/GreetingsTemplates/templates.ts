@@ -1,4 +1,9 @@
-import { OccasionTemplateType } from "./types";
+import type { OccasionTemplateType } from "./types";
+
+const freepikAssetSource = {
+  name: "Freepik Storyset",
+  url: "https://storyset.com",
+};
 
 export const occasionTemplates: Array<OccasionTemplateType> = [
   {
@@ -14,7 +19,7 @@ export const occasionTemplates: Array<OccasionTemplateType> = [
       "/new-year/Celebration-cuate.svg",
       "/new-year/Celebration-bro.svg",
     ],
-    assetSource: { name: "Freepik Storyset", url: "https://storyset.com" },
+    assetSource: freepikAssetSource,
   },
   {
     type: "chinese-new-year",
@@ -26,7 +31,7 @@ export const occasionTemplates: Array<OccasionTemplateType> = [
       "/chinese-new-year/People celebrating Chinese New Year-pana.svg",
       "/chinese-new-year/People celebrating Chinese New Year-rafiki.svg",
     ],
-    assetSource: { name: "Freepik Storyset", url: "https://storyset.com" },
+    assetSource: freepikAssetSource,
     customFont: "Caveat",
   },
   {
@@ -37,9 +42,6 @@ export const occasionTemplates: Array<OccasionTemplateType> = [
       "/christmas/Christmas tree-rafiki.svg",
       "/christmas/Christmas stocking-amico.svg",
     ],
-    assetSource: {
-      name: "Freepik Storyset",
-      url: "https://storyset.com",
-    },
+    assetSource: freepikAssetSource,
   },
 ];

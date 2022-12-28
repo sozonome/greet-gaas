@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable sonarjs/no-nested-template-literals */
 import {
   Box,
   Button,
-  Checkbox,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -23,8 +25,9 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { FormikErrors, useFormik } from "formik";
 import axios from "axios";
+import type { FormikErrors } from "formik";
+import { useFormik } from "formik";
 import { useState } from "react";
 
 import {
@@ -39,6 +42,8 @@ type CreateFormType = {
   from?: string;
   isEncrypted?: boolean;
 };
+
+const defaultErrorMessage = "invalid characters";
 
 const Create = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,28 +67,28 @@ const Create = () => {
       isEncrypted: true,
     },
     validate: (formValues: CreateFormType) => {
-      const errors: FormikErrors<CreateFormType> = {};
+      const formErrors: FormikErrors<CreateFormType> = {};
       if (formValues.name === "") {
-        errors.name = "Name must be filled";
+        formErrors.name = "Name must be filled";
       }
       if (formValues.name.indexOf("script") > -1) {
-        errors.name = "invalid characters";
+        formErrors.name = defaultErrorMessage;
       }
       if (formValues.customMessage.indexOf("script") > -1) {
-        errors.customMessage = "invalid characters";
+        formErrors.customMessage = defaultErrorMessage;
       }
       if (formValues.from.indexOf("script") > -1) {
-        errors.from = "invalid characters";
+        formErrors.from = defaultErrorMessage;
       }
 
       if (formValues.occasion === "") {
         errors.occasion = "Occasion must be picked";
       }
 
-      return errors;
+      return formErrors;
     },
     onSubmit: async () => {
-      isEncrypted ? setLoading(true) : setLoading(false);
+      setLoading(isEncrypted);
       onOpen();
       const updateGeneratedUrl = await greetingRoute();
       setGeneratedUrl(updateGeneratedUrl);
@@ -92,10 +97,10 @@ const Create = () => {
   });
 
   const encryptText = async (text: string) =>
-    await axios("/api/encrypt", { params: { text } }).then((res) => res.data);
+    axios("/api/encrypt", { params: { text } }).then((res) => res.data);
 
   const processString = async (text: string) =>
-    escape(isEncrypted ? await encryptText(text) : text);
+    decodeURI(isEncrypted ? await encryptText(text) : text);
 
   const greetingRoute = async () => {
     return `/greetings/${
@@ -137,17 +142,17 @@ const Create = () => {
           value={occasion}
           textTransform="capitalize"
           errorBorderColor="crimson"
-          isInvalid={errors?.occasion ? true : false}
+          isInvalid={!!errors?.occasion}
         >
-          {occasionsText.map((occasion: string, index: number) => {
+          {occasionsText.map((occasionText: string, index: number) => {
             return (
               <Text
                 style={{ textTransform: "capitalize" }}
-                key={index}
+                key={occasionText}
                 as="option"
                 value={occasions[index]}
               >
-                {occasion}
+                {occasionText}
               </Text>
             );
           })}
@@ -165,7 +170,7 @@ const Create = () => {
           value={name}
           name="name"
           errorBorderColor="crimson"
-          isInvalid={errors?.name ? true : false}
+          isInvalid={!!errors?.name}
           onChange={handleChange}
         />
         {errors?.name && (
@@ -181,7 +186,7 @@ const Create = () => {
           value={customMessage}
           name="customMessage"
           errorBorderColor="crimson"
-          isInvalid={errors?.customMessage ? true : false}
+          isInvalid={!!errors?.customMessage}
           onChange={handleChange}
         />
         {errors?.customMessage && (
@@ -199,7 +204,7 @@ const Create = () => {
           value={from}
           name="from"
           errorBorderColor="crimson"
-          isInvalid={errors?.from ? true : false}
+          isInvalid={!!errors?.from}
           onChange={handleChange}
         />
         {errors?.from && (
