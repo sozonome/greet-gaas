@@ -100,7 +100,11 @@ const Create = () => {
     <Grid gap={6}>
       <Heading letterSpacing={1}>Create a Greeting</Heading>
 
-      <FormControlWrapper isRequired errorText={errors.occasion?.message}>
+      <FormControlWrapper
+        isRequired
+        label="Occasion"
+        errorText={errors.occasion?.message}
+      >
         <Select
           {...register("occasion")}
           isInvalid={!!errors.occasion?.message}
