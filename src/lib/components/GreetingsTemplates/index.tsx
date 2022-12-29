@@ -74,7 +74,7 @@ const GreetingsTemplate = ({
   return (
     <>
       <NextSeo
-        title={`Hello ${name}, ${selectedOccasionTemplate.title} | Greetings as a Service`}
+        title={`Hello ${name}, ${selectedOccasionTemplate.title}`}
         description={`${selectedOccasionTemplate.title} greetings for ${name}`}
         openGraph={{
           images: [
