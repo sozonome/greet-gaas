@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/sozonome/greet-gaas/compare/v1.0.0...v1.0.1) (2022-12-29)
+
+
+### Bug Fixes
+
+* validate occasion selection ([85f684b](https://github.com/sozonome/greet-gaas/commit/85f684b574e1f7d234a7b855cb3fa0e055af0a7e))
+
 ## 1.0.0 (2022-12-28)
 
 
