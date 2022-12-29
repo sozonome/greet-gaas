@@ -45,7 +45,7 @@ const Create = () => {
   const {
     watch,
     register,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm<CreateFormType>({
     defaultValues: initialValues,
@@ -70,6 +70,9 @@ const Create = () => {
   };
 
   const generateLink = async () => {
+    if (!isValid) {
+      return;
+    }
     setLoading(true);
     onOpen();
     const updateGeneratedUrl = await greetingRoute();
@@ -150,7 +153,7 @@ const Create = () => {
       />
 
       <Button
-        disabled={!isDirty || !isValid}
+        // disabled={!isDirty || !isValid}
         onClick={handleSubmit(generateLink)}
         colorScheme="green"
       >
