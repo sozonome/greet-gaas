@@ -1,10 +1,6 @@
-export enum Occasions {
-  "new-year",
-  "chinese-new-year",
-  "christmas",
-}
+export const occasions = ["new-year", "chinese-new-year", "christmas"] as const;
 
-export type OccasionsKeyType = keyof typeof Occasions;
+export type OccasionsKeyType = typeof occasions[number];
 
 export type OccasionTemplateType = {
   type: OccasionsKeyType;
@@ -17,13 +13,6 @@ export type OccasionTemplateType = {
   };
   customFont?: string;
 };
-
-/**
- * occasions type mapped
- */
-export const occasions: Array<OccasionsKeyType> = Object.keys(Occasions)
-  .filter((key: string) => Number.isNaN(Number(key)))
-  .map((rawOccasion: OccasionsKeyType) => rawOccasion);
 
 /**
  * transformed occasions key into text
