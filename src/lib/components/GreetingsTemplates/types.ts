@@ -1,6 +1,6 @@
 export const occasions = ["new-year", "chinese-new-year", "christmas"] as const;
 
-export type OccasionsKeyType = typeof occasions[number];
+export type OccasionsKeyType = (typeof occasions)[number];
 
 export type OccasionTemplateType = {
   type: OccasionsKeyType;
