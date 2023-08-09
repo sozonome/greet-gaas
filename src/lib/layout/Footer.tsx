@@ -1,24 +1,24 @@
-import { Box, Grid, Link, Text } from "@chakra-ui/react";
+import { Box, Grid, Link, Text } from '@chakra-ui/react';
 
-import Badges from "./Badges";
+import Badges from './Badges';
 
 const Footer = () => {
   return (
     <Grid
       as="footer"
       width="full"
-      textAlign={["center", "center", "inherit"]}
-      templateColumns={["repeat(1)", "repeat(1)", "repeat(2, 1fr)"]}
+      textAlign={['center', 'center', 'inherit']}
+      templateColumns={['repeat(1)', 'repeat(1)', 'repeat(2, 1fr)']}
       alignItems="center"
     >
       <Text fontSize="sm">
-        2020 - {new Date().getFullYear()} |{" "}
+        2020 - {new Date().getFullYear()} |{' '}
         <Link fontWeight="bold" href="https://sznm.dev" isExternal>
           sznm.dev
         </Link>
       </Text>
 
-      <Box textAlign={["center", "center", "right"]}>
+      <Box textAlign={['center', 'center', 'right']}>
         <Badges />
       </Box>
     </Grid>

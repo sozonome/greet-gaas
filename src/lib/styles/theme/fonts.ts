@@ -1,6 +1,6 @@
-import type { DeepPartial, Theme } from "@chakra-ui/react";
+import type { DeepPartial, Theme } from '@chakra-ui/react';
 
-export const fonts: DeepPartial<Theme["fonts"]> = {
-  heading: "Caveat, sans-serif",
-  body: "Outfit, sans-serif",
+export const fonts: DeepPartial<Theme['fonts']> = {
+  heading: 'Caveat, sans-serif',
+  body: 'Outfit, sans-serif',
 };

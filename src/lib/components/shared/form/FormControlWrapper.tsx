@@ -3,23 +3,23 @@ import type {
   FormErrorMessageProps,
   FormLabelProps,
   SkeletonProps,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Skeleton,
-} from "@chakra-ui/react";
-import type { ReactNode } from "react";
+} from '@chakra-ui/react';
+import type { ReactNode } from 'react';
 
 export type FormControlWrapperProps = {
-  label?: FormLabelProps["children"];
-  errorText?: FormErrorMessageProps["children"];
-  errorTextColor?: FormErrorMessageProps["color"];
-  isLoaded?: SkeletonProps["isLoaded"];
+  label?: FormLabelProps['children'];
+  errorText?: FormErrorMessageProps['children'];
+  errorTextColor?: FormErrorMessageProps['color'];
+  isLoaded?: SkeletonProps['isLoaded'];
   children?: ReactNode;
-} & Pick<FormControlProps, "isInvalid" | "isRequired">;
+} & Pick<FormControlProps, 'isInvalid' | 'isRequired'>;
 
 const FormControlWrapper = ({
   label,

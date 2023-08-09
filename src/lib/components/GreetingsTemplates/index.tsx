@@ -1,14 +1,14 @@
-import { Box, Grid, Heading, Image, Link, Text } from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
+import { Box, Grid, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { NextSeo } from 'next-seo';
 
-import MotionBox from "lib/components/MotionBox";
+import MotionBox from 'lib/components/MotionBox';
 
-import { occasionTemplates } from "./templates";
-import type { GreetingsTemplateProps, OccasionTemplateType } from "./types";
+import { occasionTemplates } from './templates';
+import type { GreetingsTemplateProps, OccasionTemplateType } from './types';
 
 type OccasionWrapperProps = Pick<
   GreetingsTemplateProps,
-  "occasion" | "imageSrc"
+  'occasion' | 'imageSrc'
 >;
 
 const imageSize = {
@@ -27,7 +27,7 @@ const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
 
       <MotionBox
         animate={{ y: 20 }}
-        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+        transition={{ repeat: Infinity, duration: 2, repeatType: 'reverse' }}
         display="flex"
         justifyContent="center"
       >
@@ -69,7 +69,7 @@ const GreetingsTemplate = ({
   );
 
   const description =
-    message ?? "Greetings%20as%20a%20Service%20|%20https://gaas.sznm.dev";
+    message ?? 'Greetings%20as%20a%20Service%20|%20https://gaas.sznm.dev';
 
   return (
     <>
@@ -88,7 +88,7 @@ const GreetingsTemplate = ({
       <Grid textAlign="center" gap={2}>
         {name && (
           <Text fontSize="lg">
-            Hello{" "}
+            Hello{' '}
             <Text as="span" textTransform="capitalize">
               {name}
             </Text>

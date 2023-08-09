@@ -1,4 +1,4 @@
-import type { ModalProps } from "@chakra-ui/react";
+import type { ModalProps } from '@chakra-ui/react';
 import {
   Modal,
   ModalBody,
@@ -7,12 +7,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/react";
-import type * as React from "react";
+} from '@chakra-ui/react';
+import type * as React from 'react';
 
 export type ModalWrapperProps = Pick<
   ModalProps,
-  "isOpen" | "onClose" | "closeOnOverlayClick" | "size"
+  'isOpen' | 'onClose' | 'closeOnOverlayClick' | 'size'
 > & {
   header?: React.ReactNode;
   withCloseButton?: boolean;
@@ -42,7 +42,7 @@ const ModalWrapper = ({
 
       <ModalContent margin={6} padding={2} borderRadius={24}>
         {header && (
-          <ModalHeader fontWeight="black" fontSize={{ base: "2xl", lg: "3xl" }}>
+          <ModalHeader fontWeight="black" fontSize={{ base: '2xl', lg: '3xl' }}>
             {header}
           </ModalHeader>
         )}

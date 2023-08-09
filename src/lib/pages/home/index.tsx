@@ -4,15 +4,15 @@ import {
   Heading,
   Image,
   Link as ChakraLink,
-} from "@chakra-ui/react";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
+} from '@chakra-ui/react';
+import Link from 'next/link';
+import Balancer from 'react-wrap-balancer';
 
 const Home = () => {
   return (
     <Grid gap={8} marginY={[8, 16]} w="full" textAlign="center">
       <Grid
-        templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+        templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
         alignItems="center"
         gap={4}
       >
@@ -32,7 +32,7 @@ const Home = () => {
           letterSpacing={1}
           size="2xl"
           fontWeight="extrabold"
-          textAlign={{ base: "center", md: "start" }}
+          textAlign={{ base: 'center', md: 'start' }}
         >
           <Balancer>Create Greetings for your Folks!</Balancer>
         </Heading>

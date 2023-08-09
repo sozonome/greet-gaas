@@ -1,4 +1,4 @@
-export const occasions = ["new-year", "chinese-new-year", "christmas"] as const;
+export const occasions = ['new-year', 'chinese-new-year', 'christmas'] as const;
 
 export type OccasionsKeyType = (typeof occasions)[number];
 
@@ -18,7 +18,7 @@ export type OccasionTemplateType = {
  * transformed occasions key into text
  */
 export const occasionsText: Array<string> = occasions.map(
-  (occasion: OccasionsKeyType) => occasion.replace(/-/g, " ")
+  (occasion: OccasionsKeyType) => occasion.replace(/-/g, ' ')
 );
 
 export type GreetingsTemplateProps = {

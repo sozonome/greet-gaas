@@ -1,4 +1,4 @@
-import UnencryptedGreetingPage from "lib/pages/greetings/unencrypted";
+import UnencryptedGreetingPage from 'lib/pages/greetings/unencrypted';
 
-export { getServerSideProps } from "lib/pages/greetings/unencrypted/loader";
+export { getServerSideProps } from 'lib/pages/greetings/unencrypted/loader';
 export default UnencryptedGreetingPage;

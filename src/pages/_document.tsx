@@ -1,11 +1,11 @@
-import { ColorModeScript } from "@chakra-ui/react";
-import type { DocumentContext } from "next/document";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ColorModeScript } from '@chakra-ui/react';
+import type { DocumentContext } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import customTheme from "lib/styles/theme";
+import customTheme from 'lib/styles/theme';
 
-export const APP_NAME = "Greetings as a Service (GaaS)";
-const APP_DESCRIPTION = "Greetings as a Service";
+export const APP_NAME = 'Greetings as a Service (GaaS)';
+const APP_DESCRIPTION = 'Greetings as a Service';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
