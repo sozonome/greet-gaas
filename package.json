@@ -7,6 +7,7 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
+    "build:turbo": "npx turbo build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && pnpm format",
