@@ -12,7 +12,7 @@ const Footer = () => {
       alignItems="center"
     >
       <Text fontSize="sm">
-        2020 - {new Date().getFullYear()} |{' '}
+        {new Date().getFullYear()} |{' '}
         <Link fontWeight="bold" href="https://sznm.dev" isExternal>
           sznm.dev
         </Link>
