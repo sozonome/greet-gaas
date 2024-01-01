@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from 'next';
 
-import { occasionTemplates } from 'lib/components/GreetingsTemplates/templates';
-import type { OccasionsKeyType } from 'lib/components/GreetingsTemplates/types';
-import { getTemplateImage } from 'lib/utils/getTemplateImage';
+import { occasionTemplates } from '@/lib/components/GreetingsTemplates/templates';
+import type { OccasionsKeyType } from '@/lib/components/GreetingsTemplates/types';
+import { getTemplateImage } from '@/lib/utils/getTemplateImage';
 
 import type {
   UnencryptedGreetingPageParams,

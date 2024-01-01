@@ -20,10 +20,10 @@ import { useForm } from 'react-hook-form';
 import {
   occasions,
   occasionsText,
-} from 'lib/components/GreetingsTemplates/types';
-import ControlledInput from 'lib/components/shared/form/ControlledInput';
-import FormControlWrapper from 'lib/components/shared/form/FormControlWrapper';
-import ModalWrapper from 'lib/components/shared/ModalWrapper';
+} from '@/lib/components/GreetingsTemplates/types';
+import ControlledInput from '@/lib/components/shared/form/ControlledInput';
+import FormControlWrapper from '@/lib/components/shared/form/FormControlWrapper';
+import ModalWrapper from '@/lib/components/shared/ModalWrapper';
 
 import type { CreateFormType } from './models';
 import { createFormRequestScheme } from './models';

@@ -1,10 +1,10 @@
 import crypto from 'crypto';
 
-import { occasionTemplates } from 'lib/components/GreetingsTemplates/templates';
+import { occasionTemplates } from '@/lib/components/GreetingsTemplates/templates';
 import type {
   OccasionsKeyType,
   OccasionTemplateType,
-} from 'lib/components/GreetingsTemplates/types';
+} from '@/lib/components/GreetingsTemplates/types';
 
 export const getTemplateImage = (occasion: OccasionsKeyType) => {
   const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(

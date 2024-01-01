@@ -1,3 +1,3 @@
-import Create from 'lib/pages/create';
+import Create from '@/lib/pages/create';
 
 export default Create;

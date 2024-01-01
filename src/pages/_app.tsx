@@ -4,10 +4,10 @@ import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 
 import defaultSEOConfig from '../../next-seo.config';
-import Layout from 'lib/layout';
-import customTheme from 'lib/styles/theme';
+import Layout from '@/lib/layout';
+import customTheme from '@/lib/styles/theme';
 
-import 'lib/styles/globals.css';
+import '@/lib/styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (

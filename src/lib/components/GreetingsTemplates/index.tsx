@@ -1,7 +1,7 @@
 import { Box, Grid, Heading, Image, Link, Text } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 
-import MotionBox from 'lib/components/MotionBox';
+import MotionBox from '@/lib/components/MotionBox';
 
 import { occasionTemplates } from './templates';
 import type { GreetingsTemplateProps, OccasionTemplateType } from './types';

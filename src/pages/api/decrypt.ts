@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { decryptText } from 'lib/utils/decryptText';
+import { decryptText } from '@/lib/utils/decryptText';
 
 const decrypt = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
