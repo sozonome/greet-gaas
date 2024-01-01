@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps<
 > = async (ctx) => {
   const { query, params } = ctx;
 
-  const occasion = params.occasion as string;
+  const occasion = params?.occasion as string;
 
   const isValidOccassion = occasionTemplates
     .map((template) => template.type as string)

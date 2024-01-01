@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo';
 import MotionBox from '@/lib/components/MotionBox';
 
 import { occasionTemplates } from './templates';
-import type { GreetingsTemplateProps, OccasionTemplateType } from './types';
+import type { GreetingsTemplateProps } from './types';
 
 type OccasionWrapperProps = Pick<
   GreetingsTemplateProps,
@@ -17,13 +17,13 @@ const imageSize = {
 };
 
 const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
-  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
+  const selectedOccasionTemplate = occasionTemplates.find(
     ({ type }) => type === occasion
   );
 
   return (
     <Grid gap={4} marginX={[0, 16, 32]} marginBottom={8}>
-      <Heading fontFamily="heading">{selectedOccasionTemplate.title}</Heading>
+      <Heading fontFamily="heading">{selectedOccasionTemplate?.title}</Heading>
 
       <MotionBox
         animate={{ y: 20 }}
@@ -32,14 +32,14 @@ const OccasionWrapper = ({ occasion, imageSrc }: OccasionWrapperProps) => {
         justifyContent="center"
       >
         <Image
-          src={imageSrc ?? selectedOccasionTemplate.imageSrc[0]}
+          src={imageSrc ?? selectedOccasionTemplate?.imageSrc?.[0]}
           width={imageSize}
           height={imageSize}
           alt="illustration"
         />
       </MotionBox>
 
-      {selectedOccasionTemplate.assetSource &&
+      {selectedOccasionTemplate?.assetSource &&
         (selectedOccasionTemplate.assetSource.url ? (
           <Link
             href={selectedOccasionTemplate.assetSource.url}
@@ -64,7 +64,7 @@ const GreetingsTemplate = ({
   from,
   imageSrc,
 }: GreetingsTemplateProps) => {
-  const selectedOccasionTemplate: OccasionTemplateType = occasionTemplates.find(
+  const selectedOccasionTemplate = occasionTemplates.find(
     ({ type }) => type === occasion
   );
 
@@ -74,13 +74,13 @@ const GreetingsTemplate = ({
   return (
     <>
       <NextSeo
-        title={`Hello ${name}, ${selectedOccasionTemplate.title}`}
-        description={`${selectedOccasionTemplate.title} greetings for ${name}`}
+        title={`Hello ${name}, ${selectedOccasionTemplate?.title}`}
+        description={`${selectedOccasionTemplate?.title} greetings for ${name}`}
         openGraph={{
           images: [
             {
-              url: `https://og.sznm.dev/api/generate?heading=Hello%20${name},%20${selectedOccasionTemplate.title}&text=${description}&template=color&center=true`,
-              alt: `${selectedOccasionTemplate.title} greetings for ${name} og-image`,
+              url: `https://og.sznm.dev/api/generate?heading=Hello%20${name},%20${selectedOccasionTemplate?.title}&text=${description}&template=color&center=true`,
+              alt: `${selectedOccasionTemplate?.title} greetings for ${name} og-image`,
             },
           ],
         }}
